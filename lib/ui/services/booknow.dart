@@ -138,23 +138,26 @@ class BookNowScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(selectedOption),
-                      DropdownButton<String>(
-                        // value: selectedOption,
-                        onChanged: (value) {},
-                        items: [
-                          DropdownMenuItem(
-                            value: address[0],
-                            child: Text(address[0]),
-                          ),
-                          DropdownMenuItem(
-                            value: address[1],
-                            child: Text(address[1]),
-                          ),
-                          DropdownMenuItem(
-                            value: address[2],
-                            child: Text(address[2]),
-                          ),
-                        ],
+                      DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          // value: selectedOption,
+                          elevation: 0,
+                          onChanged: (value) {},
+                          items: [
+                            DropdownMenuItem(
+                              value: address[0],
+                              child: Text(address[0]),
+                            ),
+                            DropdownMenuItem(
+                              value: address[1],
+                              child: Text(address[1]),
+                            ),
+                            DropdownMenuItem(
+                              value: address[2],
+                              child: Text(address[2]),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

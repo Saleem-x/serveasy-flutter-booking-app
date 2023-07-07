@@ -1,6 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/ui/accountinfo/function.dart';
+import 'package:project2/ui/splashscreen/splashscreen.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountInfoScreen extends StatelessWidget {
   const AccountInfoScreen({super.key});
@@ -8,6 +15,11 @@ class AccountInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      User? user = FirebaseAuth.instance.currentUser;
+      fetchUserData(user!.uid, context);
+    });
+
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -57,18 +69,24 @@ class AccountInfoScreen extends StatelessWidget {
                       SizedBox(
                         width: size.width * 0.05,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '@username',
-                            style: fontstyle(color: colorwhite, fontSize: 17),
-                          ),
-                          Text(
-                            'useremaial@gmail.com',
-                            style: fontstyle(color: colorwhite, fontSize: 12),
-                          ),
-                        ],
+                      BlocBuilder<AccountinfoBloc, AccountinfoState>(
+                        builder: (context, state) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                state.name,
+                                style:
+                                    fontstyle(color: colorwhite, fontSize: 22),
+                              ),
+                              Text(
+                                state.phone,
+                                style:
+                                    fontstyle(color: colorwhite, fontSize: 15),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -90,9 +108,36 @@ class AccountInfoScreen extends StatelessWidget {
               size: size,
               title: 'Cart',
             ),
-            ProfileScreenContainer(
-              size: size,
-              title: 'Logout',
+            InkWell(
+              onTap: () => Alert(
+                context: context,
+                type: AlertType.warning,
+                title: "Logout",
+                desc: "do you want to logout.",
+                buttons: [
+                  DialogButton(
+                    onPressed: () async {
+                      final sharedprefs = await SharedPreferences.getInstance();
+                      sharedprefs.setBool('userin', false);
+                      // ignore: use_build_context_synchronously
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (context) => const SplashScreen(),
+                          ),
+                          (route) => false);
+                    },
+                    width: 120,
+                    child: const Text(
+                      "Logout",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  )
+                ],
+              ).show(),
+              child: ProfileScreenContainer(
+                size: size,
+                title: 'Logout',
+              ),
             ),
           ],
         ),

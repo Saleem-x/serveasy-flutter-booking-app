@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/ui/login/loginscreen.dart';
 import 'package:project2/ui/login/signupscreen.dart';
@@ -66,10 +68,13 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
+                context
+                    .read<LoginscreenBloc>()
+                    .add(Loadingevent(isloading: false));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
+                      builder: (context) => LoginScreen(),
                     ));
               },
               child: Text(
@@ -95,10 +100,13 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
+                context
+                    .read<LoginscreenBloc>()
+                    .add(Loadingevent(isloading: false));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SignUpScreen(),
+                      builder: (context) => SignUpScreen(),
                     ));
               },
               child: Text(

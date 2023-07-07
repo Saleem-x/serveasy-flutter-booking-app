@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "689618440082",
+    "project_id": "serveasy-b3b33",
+    "storage_bucket": "serveasy-b3b33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689618440082:android:44a896a456ce93c67dfb4b",
+        "android_client_info": {
+          "package_name": "com.example.project2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689618440082-ep05trvc6hkpo01egls34gdt1i9451pk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXVYka-lPLVId_8kiRy9vxhV0pVOy7SdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689618440082-ep05trvc6hkpo01egls34gdt1i9451pk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
