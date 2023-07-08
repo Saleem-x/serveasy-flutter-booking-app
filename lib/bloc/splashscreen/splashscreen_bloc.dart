@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/ui/welocomescreen.dart';
 import 'package:project2/ui/widgets/bottomnavigation.dart';

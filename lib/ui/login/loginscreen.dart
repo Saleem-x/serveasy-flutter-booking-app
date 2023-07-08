@@ -7,12 +7,16 @@ import 'package:project2/ui/login/loginfunction.dart';
 import 'package:project2/ui/widgets/textfieldwidget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final emailcontroller = TextEditingController();
   final passcontroller = TextEditingController();
-
   final formkey = GlobalKey<FormState>();
 
   @override
@@ -145,5 +149,12 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailcontroller.dispose();
+    passcontroller.dispose();
+    super.dispose();
   }
 }

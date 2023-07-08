@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project2/bloc/service/service_bloc.dart';
+import 'package:project2/bloc/product/products_bloc.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/ui/services/functions.dart';
+import 'package:project2/ui/products/function.dart';
 
-class SearvicesList extends StatelessWidget {
-  const SearvicesList({super.key});
+class ProductWidget extends StatelessWidget {
+  const ProductWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      getAllServices(context);
+      getAllProducts(context);
     });
-    return BlocBuilder<ServiceBloc, ServiceState>(
+    return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
         return ListView.builder(
           itemCount:
-              state.serviceslist.length > 3 ? 3 : state.serviceslist.length,
+              state.productlist.length > 3 ? 3 : state.productlist.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Padding(
@@ -33,8 +33,8 @@ class SearvicesList extends StatelessWidget {
                           topRight: Radius.circular(20),
                         ),
                         image: DecorationImage(
-                            image: NetworkImage(
-                                state.serviceslist[index].imageUrl),
+                            image:
+                                NetworkImage(state.productlist[index].imageUrl),
                             fit: BoxFit.cover)),
                     width: size.width / 3,
                   ),
@@ -51,7 +51,7 @@ class SearvicesList extends StatelessWidget {
                     width: size.width / 3,
                     child: Center(
                         child: Text(
-                      state.serviceslist[index].name,
+                      state.productlist[index].name,
                       style: fontstyle(color: textcolorwhite, fontSize: 17),
                     )),
                   ),

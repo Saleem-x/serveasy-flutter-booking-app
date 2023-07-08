@@ -8,15 +8,22 @@ import 'package:project2/constents/colors.dart';
 import 'package:project2/ui/login/functions.dart';
 import 'package:project2/ui/widgets/textfieldwidget.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final namecontroller = TextEditingController();
   final emailcontroller = TextEditingController();
   final phonecontroller = TextEditingController();
   final passcontroller = TextEditingController();
   final passverifycontroller = TextEditingController();
+
   final formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -159,5 +166,15 @@ class SignUpScreen extends StatelessWidget {
         ),
       )),
     );
+  }
+
+  @override
+  void dispose() {
+    emailcontroller.dispose();
+    passcontroller.dispose();
+    namecontroller.dispose();
+    phonecontroller.dispose();
+    passverifycontroller.dispose();
+    super.dispose();
   }
 }

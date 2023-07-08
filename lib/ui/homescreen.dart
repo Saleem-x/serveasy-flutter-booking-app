@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/ui/widgets/appbarwidget.dart';
 import 'package:project2/ui/widgets/customerfeedbackwidget.dart';
+import 'package:project2/ui/widgets/productwidget.dart';
 import 'package:project2/ui/widgets/serviceswidget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -112,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 10),
                 child: SizedBox(
                   height: size.height * 0.25,
-                  child: const SearvicesList(),
+                  child: const ProductWidget(),
                 ),
               ),
               Padding(

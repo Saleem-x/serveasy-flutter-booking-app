@@ -22,9 +22,9 @@ void fetchUserData(String userId, BuildContext context) {
 
       context.read<AccountinfoBloc>().add(GetUserDetailsEvent(name, phone));
     } else {
-      print('Document does not exist');
+      log('Document does not exist');
     }
   }).catchError((error) {
-    print('Error getting document: $error');
+    log('Error getting document: $error');
   });
 }

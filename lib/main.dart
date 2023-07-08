@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/bloc/bottomnavbar/bottomnavbar_bloc.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
+import 'package:project2/bloc/product/products_bloc.dart';
+import 'package:project2/bloc/service/service_bloc.dart';
 import 'package:project2/bloc/signup/signup_bloc.dart';
 import 'package:project2/bloc/splashscreen/splashscreen_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/firebase_options.dart';
 import 'package:project2/ui/splashscreen/splashscreen.dart';
-import 'package:project2/ui/welocomescreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AccountinfoBloc>(
           create: (context) => AccountinfoBloc(),
+        ),
+        BlocProvider<ServiceBloc>(
+          create: (context) => ServiceBloc(),
+        ),
+        BlocProvider<ProductsBloc>(
+          create: (context) => ProductsBloc(),
         ),
       ],
       child: MaterialApp(
