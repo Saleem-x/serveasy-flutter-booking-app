@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/ui/products/productsscreen.dart';
 import 'package:project2/ui/services/serviceswidget.dart';
-import 'package:project2/ui/widgets/appbarwidget.dart';
 
 class ServicesScreen extends StatelessWidget {
   const ServicesScreen({super.key});

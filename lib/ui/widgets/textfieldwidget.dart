@@ -39,7 +39,7 @@ class TextFieldWidget extends StatelessWidget {
                 return 'email not valid';
               }
             } else if (label == 'phone') {
-              if (controller.text.length < 10) {
+              if (controller.text.length < 10 || controller.text.length > 10) {
                 return 'phone number should be 10';
               }
             }

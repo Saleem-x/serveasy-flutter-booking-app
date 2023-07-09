@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/constents/colors.dart';
 
 final drawerwidget = Drawer(
-    child: ListView(
+    child: Column(
   children: [
     ListTile(
       title: Text(
@@ -34,6 +34,15 @@ final drawerwidget = Drawer(
         FontAwesomeIcons.shareNodes,
         color: colorblue,
       ),
-    )
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'version 1.0.0',
+          style: fontstyle(color: colorlightshade),
+        )
+      ],
+    ),
   ],
 ));
