@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/service/service_bloc.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/constents/ecorations.dart';
 import 'package:project2/ui/services/functions.dart';
 
 class SearvicesList extends StatelessWidget {
@@ -43,16 +44,19 @@ class SearvicesList extends StatelessWidget {
                   flex: 1,
                   child: Container(
                     height: size.height * 0.09,
-                    decoration: const BoxDecoration(
-                        color: colorblue,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20))),
+                    decoration: BoxDecoration(
+                      color: colorwhite,
+                      boxShadow: [insetboxshadow],
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                      ),
+                    ),
                     width: size.width / 3,
                     child: Center(
                         child: Text(
                       state.serviceslist[index].name,
-                      style: fontstyle(color: textcolorwhite, fontSize: 17),
+                      style: fontstyle(fontSize: 17),
                     )),
                   ),
                 )

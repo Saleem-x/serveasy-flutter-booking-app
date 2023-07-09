@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/constents/widgets.dart';
 import 'package:project2/ui/widgets/appbarwidget.dart';
 import 'package:project2/ui/widgets/customerfeedbackwidget.dart';
 import 'package:project2/ui/widgets/productwidget.dart';
@@ -14,9 +15,11 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar:
-            PreferredSize(preferredSize: size / 5, child: const AppBArWidget()),
-        drawer: const Drawer(),
+        appBar: PreferredSize(
+          preferredSize: size / 5,
+          child: const AppBArWidget(),
+        ),
+        drawer: drawerwidget,
         body: SingleChildScrollView(
           child: Column(
             children: [

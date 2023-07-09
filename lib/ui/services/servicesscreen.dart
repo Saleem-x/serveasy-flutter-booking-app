@@ -17,7 +17,6 @@ class ServicesScreen extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(100),
             child: AppBar(
-              title: const AppBArWidget(),
               automaticallyImplyLeading: false,
               bottom: TabBar(
                 indicatorPadding:

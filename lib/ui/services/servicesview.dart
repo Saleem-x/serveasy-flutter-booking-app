@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/models/servicemodel.dart';
 import 'package:project2/ui/services/booknow.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ServiceView extends StatelessWidget {
-  const ServiceView({super.key});
+  final ServiceModel service;
+  const ServiceView({super.key, required this.service});
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +21,10 @@ class ServiceView extends StatelessWidget {
               children: [
                 Container(
                   height: size.height / 1.5,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: colorblue,
                     image: DecorationImage(
-                        image: NetworkImage(
-                            'https://thumbs.dreamstime.com/b/man-worker-car-wash-washing-s-alloy-wheels-48893850.jpg'),
+                        image: NetworkImage(service.imageUrl),
                         fit: BoxFit.cover),
                   ),
                 ),
@@ -73,7 +74,7 @@ class ServiceView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Mobile Car\nWash',
+                              service.name,
                               style: fontstyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
@@ -83,7 +84,7 @@ class ServiceView extends StatelessWidget {
                               height: size.height * 0.02,
                             ),
                             Text(
-                              'From ₹999 Onwards',
+                              'From ₹${service.price}',
                               style: fontstyle(color: colorlightshade),
                             )
                           ],
@@ -142,7 +143,7 @@ class ServiceView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Text(
-                      '''is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.''',
+                      service.description,
                       style: fontstyle(
                         color: colorwhite,
                         fontSize: 17,
