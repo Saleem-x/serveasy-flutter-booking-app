@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/service/service_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/models/servicemodel.dart';
-import 'package:project2/ui/services/functions.dart';
+import 'package:project2/functions/getservices.dart';
 import 'package:project2/ui/services/servicesview.dart';
 
 class ServicesWidget extends StatelessWidget {
@@ -26,7 +26,7 @@ class ServicesWidget extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                      height: size.height / 2,
+                      // height: size.height / 2,
                       decoration: BoxDecoration(
                         color: colorblue,
                         borderRadius: BorderRadius.circular(10),
@@ -135,6 +135,9 @@ class ServicesWidget extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.02,
                           ),
                         ],
                       ),

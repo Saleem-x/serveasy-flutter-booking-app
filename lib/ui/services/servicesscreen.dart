@@ -16,6 +16,11 @@ class ServicesScreen extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(100),
             child: AppBar(
+              centerTitle: true,
+              title: Text(
+                'Services & Products',
+                style: fontstyle(fontSize: 17, fontWeight: FontWeight.bold),
+              ),
               automaticallyImplyLeading: false,
               bottom: TabBar(
                 indicatorPadding:

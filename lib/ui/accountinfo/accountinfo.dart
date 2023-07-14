@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/ui/accountinfo/function.dart';
+import 'package:project2/functions/accountinfo.dart';
 import 'package:project2/ui/splashscreen/splashscreen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';

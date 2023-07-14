@@ -1,8 +1,10 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/bloc/signup/signup_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,7 +51,54 @@ Future<bool> isEmailAlreadyRegistered(String email) async {
         await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
     return signInMethods.isNotEmpty;
   } catch (e) {
-    log('Error checking email registration: $e');
+    log(' $e');
     return false;
   }
+}
+
+signInWithGoogle(BuildContext context) async {
+  log('1');
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  log('2');
+  final GoogleSignInAccount? googleSignInAccount;
+  if (Platform.isAndroid) {
+    log('3');
+    googleSignInAccount = await googleSignIn.signIn();
+    log('4');
+    final GoogleSignInAuthentication googleAuth =
+        await googleSignInAccount!.authentication;
+
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    log('5');
+    // ignore: use_build_context_synchronously
+    context.read<LoginscreenBloc>().add(Loadingevent(isloading: true));
+    // ignore: use_build_context_synchronously
+    context.read<SignupBloc>().add(UserCreated(context));
+
+    final UserCredential userCredential =
+        await auth.signInWithCredential(credential);
+
+    final sharedprefs = await SharedPreferences.getInstance();
+    sharedprefs.setBool('userin', true);
+    // ignore: use_build_context_synchronously
+    context.read<LoginscreenBloc>().add(Loadingevent(isloading: false));
+    log(userCredential.user.toString());
+  }
+
+// // ignore: use_build_context_synchronously
+//   try {
+//     final UserCredential userCredential =
+//         await auth.signInWithCredential(credential);
+
+//     return userCredential;
+//   } catch (e) {
+//     // ignore: use_build_context_synchronously
+
+//     log(e.toString());
+//     return null;
+//   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/ui/login/loginfunction.dart';
+import 'package:project2/functions/loginfunction.dart';
 import 'package:project2/ui/widgets/textfieldwidget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

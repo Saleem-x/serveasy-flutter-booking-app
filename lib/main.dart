@@ -9,7 +9,7 @@ import 'package:project2/bloc/service/service_bloc.dart';
 import 'package:project2/bloc/signup/signup_bloc.dart';
 import 'package:project2/bloc/splashscreen/splashscreen_bloc.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/firebase_options.dart';
+import 'package:project2/functions/firebase_options.dart';
 import 'package:project2/ui/splashscreen/splashscreen.dart';
 
 void main() async {
