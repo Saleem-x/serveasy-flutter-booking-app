@@ -59,6 +59,7 @@ Future<bool> isEmailAlreadyRegistered(String email) async {
 signInWithGoogle(BuildContext context) async {
   log('1');
   final FirebaseAuth auth = FirebaseAuth.instance;
+  auth.signOut();
   final GoogleSignIn googleSignIn = GoogleSignIn();
   log('2');
   final GoogleSignInAccount? googleSignInAccount;

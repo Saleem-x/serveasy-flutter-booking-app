@@ -5,6 +5,7 @@ import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/bloc/bottomnavbar/bottomnavbar_bloc.dart';
 import 'package:project2/bloc/buynow/buynowselection_bloc.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
+import 'package:project2/bloc/orderslist/orderlist_bloc.dart';
 import 'package:project2/bloc/product/products_bloc.dart';
 import 'package:project2/bloc/service/service_bloc.dart';
 import 'package:project2/bloc/signup/signup_bloc.dart';
@@ -49,6 +50,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<BuynowselectionBloc>(
           create: (context) => BuynowselectionBloc(),
+        ),
+        BlocProvider<OrderlistBloc>(
+          create: (context) => OrderlistBloc(),
         ),
       ],
       child: MaterialApp(

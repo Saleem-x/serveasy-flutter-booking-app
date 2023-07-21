@@ -62,3 +62,11 @@ getuser() async {
   final email = user!.email;
   return email;
 }
+
+String formatMicrosecondsSinceEpoch(int microsecondsSinceEpoch) {
+  DateTime dateTime =
+      DateTime.fromMicrosecondsSinceEpoch(microsecondsSinceEpoch);
+  String formattedDateTime =
+      '${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}';
+  return formattedDateTime;
+}

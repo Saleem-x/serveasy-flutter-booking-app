@@ -24,4 +24,5 @@ getAllProducts(BuildContext context) async {
   // ignore: use_build_context_synchronously
   context.read<ProductsBloc>().add(GetAllProductsEvent(products));
   log(products[0].name);
+  return products;
 }

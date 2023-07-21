@@ -17,6 +17,9 @@ class AccountInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      context
+          .read<AccountinfoBloc>()
+          .add(GetUserDetailsEvent('Username', 'Phone'));
       User? user = FirebaseAuth.instance.currentUser;
       fetchUserData(user!.uid, context);
     });
@@ -39,7 +42,7 @@ class AccountInfoScreen extends StatelessWidget {
                 Positioned(
                   top: 50,
                   left: 50,
-                  right: 50,
+                  right: 10,
                   child: Row(
                     children: [
                       Stack(
@@ -77,8 +80,9 @@ class AccountInfoScreen extends StatelessWidget {
                             children: [
                               Text(
                                 state.name,
+                                overflow: TextOverflow.ellipsis,
                                 style:
-                                    fontstyle(color: colorwhite, fontSize: 22),
+                                    fontstyle(color: colorwhite, fontSize: 20),
                               ),
                               Text(
                                 state.phone,

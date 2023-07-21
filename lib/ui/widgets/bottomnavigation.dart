@@ -19,7 +19,7 @@ class BottomNavBarWidget extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(color: colorblue, boxShadow: [
+        decoration: BoxDecoration(color: colorwhite, boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 8,
@@ -110,12 +110,12 @@ class BottomNavBarWidget extends StatelessWidget {
               children: [
                 Icon(
                   icon,
-                  color: state.index == page ? colorwhite : Colors.grey,
+                  color: state.index == page ? colorblue : Colors.grey,
                 ),
                 Text(
                   label,
                   style: TextStyle(
-                    color: state.index == page ? colorwhite : Colors.grey,
+                    color: state.index == page ? colorblue : Colors.grey,
                   ),
                 )
               ],

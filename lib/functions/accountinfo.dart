@@ -8,6 +8,8 @@ import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 
 void fetchUserData(String userId, BuildContext context) {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  User user = firebaseAuth.currentUser!;
 
   firestore
       .collection('users')
@@ -24,6 +26,9 @@ void fetchUserData(String userId, BuildContext context) {
       context.read<AccountinfoBloc>().add(GetUserDetailsEvent(name, phone));
     } else {
       log('Document does not exist');
+      final name = user.email!.split('@');
+      final email = user.email!;
+      context.read<AccountinfoBloc>().add(GetUserDetailsEvent(name[0], email));
     }
   }).catchError((error) {
     log('Error getting document: $error');
