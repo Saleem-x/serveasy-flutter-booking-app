@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/bloc/bottomnavbar/bottomnavbar_bloc.dart';
+import 'package:project2/bloc/buynow/buynowselection_bloc.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/bloc/product/products_bloc.dart';
 import 'package:project2/bloc/service/service_bloc.dart';
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ProductsBloc>(
           create: (context) => ProductsBloc(),
+        ),
+        BlocProvider<BuynowselectionBloc>(
+          create: (context) => BuynowselectionBloc(),
         ),
       ],
       child: MaterialApp(

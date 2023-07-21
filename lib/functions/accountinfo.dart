@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
@@ -27,4 +28,9 @@ void fetchUserData(String userId, BuildContext context) {
   }).catchError((error) {
     log('Error getting document: $error');
   });
+}
+
+logout() async {
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  firebaseAuth.signOut();
 }

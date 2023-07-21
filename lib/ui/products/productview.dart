@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/models/productmodel.dart';
+import 'package:project2/ui/products/buynowscreen.dart';
 import 'package:project2/ui/services/booknow.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -83,7 +84,7 @@ class ProductView extends StatelessWidget {
                               height: size.height * 0.02,
                             ),
                             Text(
-                              'From ₹${product.price}',
+                              'Price ₹${product.price}',
                               style: fontstyle(color: colorlightshade),
                             )
                           ],
@@ -104,12 +105,13 @@ class ProductView extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BookNowScreen(),
+                                      builder: (context) => BuyNowScreen(
+                                        product: product,
+                                      ),
                                     ));
                               },
                               child: Text(
-                                'Order Now',
+                                'Buy Now',
                                 style: fontstyle(color: textcolorwhite),
                               ),
                             ),

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/accountinfo.dart';
+import 'package:project2/ui/orders/orderslist.dart';
 import 'package:project2/ui/splashscreen/splashscreen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -100,9 +101,16 @@ class AccountInfoScreen extends StatelessWidget {
               size: size,
               title: 'Address',
             ),
-            ProfileScreenContainer(
-              size: size,
-              title: 'Orders',
+            InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const OrderesListScreen(),
+                  )),
+              child: ProfileScreenContainer(
+                size: size,
+                title: 'Orders',
+              ),
             ),
             ProfileScreenContainer(
               size: size,
@@ -119,6 +127,7 @@ class AccountInfoScreen extends StatelessWidget {
                     onPressed: () async {
                       final sharedprefs = await SharedPreferences.getInstance();
                       sharedprefs.setBool('userin', false);
+                      logout();
                       // ignore: use_build_context_synchronously
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(

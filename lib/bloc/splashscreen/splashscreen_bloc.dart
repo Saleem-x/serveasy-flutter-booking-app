@@ -15,15 +15,19 @@ class SplashscreenBloc extends Bloc<SplashscreenEvent, SplashscreenState> {
       if (userin == true) {
         await Future.delayed(const Duration(seconds: 3));
         // ignore: use_build_context_synchronously
-        Navigator.of(event.context).push(MaterialPageRoute(
-          builder: (context) => const BottomNavBarWidget(),
-        ));
+        Navigator.of(event.context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => const BottomNavBarWidget(),
+            ),
+            (route) => false);
       } else {
         await Future.delayed(const Duration(seconds: 3));
         // ignore: use_build_context_synchronously
-        Navigator.of(event.context).push(MaterialPageRoute(
-          builder: (context) => const WelcomeScreen(),
-        ));
+        Navigator.of(event.context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => const WelcomeScreen(),
+            ),
+            (route) => false);
       }
     });
   }
