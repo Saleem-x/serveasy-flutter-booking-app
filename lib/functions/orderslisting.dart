@@ -24,7 +24,6 @@ getallorders(BuildContext context) async {
         product = item;
       }
     }
-
     return ProductOrdermodel(
         productid,
         data['itemcount'],

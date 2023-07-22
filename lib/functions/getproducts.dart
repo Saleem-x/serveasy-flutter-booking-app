@@ -23,6 +23,6 @@ getAllProducts(BuildContext context) async {
   }).toList();
   // ignore: use_build_context_synchronously
   context.read<ProductsBloc>().add(GetAllProductsEvent(products));
-  log(products[0].name);
+  // log(products[0].name);
   return products;
 }

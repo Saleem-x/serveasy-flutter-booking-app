@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/functions/addtocart.dart';
 import 'package:project2/models/productmodel.dart';
 import 'package:project2/ui/products/buynowscreen.dart';
-import 'package:project2/ui/services/booknow.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ProductView extends StatelessWidget {
@@ -125,13 +125,8 @@ class ProductView extends StatelessWidget {
                                   width: 2.0,
                                 ),
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BookNowScreen(),
-                                    ));
+                              onPressed: () async {
+                                await addtocart(product, 1, context);
                               },
                               child: Text(
                                 'Add to Cart',

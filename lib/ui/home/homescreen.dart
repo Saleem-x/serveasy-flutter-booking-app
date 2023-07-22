@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
+
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/widgets.dart';
 import 'package:project2/ui/widgets/customerfeedbackwidget.dart';
