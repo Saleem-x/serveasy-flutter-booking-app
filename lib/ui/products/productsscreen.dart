@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/product/products_bloc.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/constents/ecorations.dart';
 import 'package:project2/ui/products/productview.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -55,18 +56,18 @@ class ProductsScreen extends StatelessWidget {
                         Flexible(
                           flex: 1,
                           child: Container(
+                            decoration: decoration2,
                             // height: size.height * 0.09,
-                            decoration: const BoxDecoration(
-                                color: colorblue,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    bottomRight: Radius.circular(20))),
+                            // decoration: const BoxDecoration(
+                            //     color: colorblue,
+                            //     borderRadius: BorderRadius.only(
+                            //         bottomLeft: Radius.circular(20),
+                            //         bottomRight: Radius.circular(20))),
                             // width: size.width / 2,
                             child: Center(
                                 child: Text(
                               state.productlist[index].name,
-                              style: fontstyle(
-                                  color: textcolorwhite, fontSize: 17),
+                              style: fontstyle(color: colorblack, fontSize: 17),
                             )),
                           ),
                         )

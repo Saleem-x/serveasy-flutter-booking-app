@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/accountinfo.dart';
+import 'package:project2/ui/cart/cartscreen.dart';
 import 'package:project2/ui/orders/orderslist.dart';
 import 'package:project2/ui/splashscreen/splashscreen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -116,9 +117,16 @@ class AccountInfoScreen extends StatelessWidget {
                 title: 'Orders',
               ),
             ),
-            ProfileScreenContainer(
-              size: size,
-              title: 'Cart',
+            InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CartScreen(),
+                  )),
+              child: ProfileScreenContainer(
+                size: size,
+                title: 'Cart',
+              ),
             ),
             InkWell(
               onTap: () => Alert(

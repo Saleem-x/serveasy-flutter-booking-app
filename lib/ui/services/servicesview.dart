@@ -42,7 +42,7 @@ class ServiceView extends StatelessWidget {
               ],
             ),
             SlidingUpPanel(
-              color: colorblue,
+              color: colorwhite,
               minHeight: size.height / 3,
               maxHeight: size.height - 50,
               borderRadius: BorderRadius.circular(20),
@@ -78,14 +78,14 @@ class ServiceView extends StatelessWidget {
                               style: fontstyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
-                                  color: colorwhite),
+                                  color: colorblack),
                             ),
                             SizedBox(
                               height: size.height * 0.02,
                             ),
                             Text(
                               'From ₹${service.price}',
-                              style: fontstyle(color: colorlightshade),
+                              style: fontstyle(color: colorgreyshade),
                             )
                           ],
                         ),
@@ -97,7 +97,7 @@ class ServiceView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                                 side: const BorderSide(
-                                  color: colorwhite,
+                                  color: colorblack,
                                   width: 2.0,
                                 ),
                               ),
@@ -111,7 +111,7 @@ class ServiceView extends StatelessWidget {
                               },
                               child: Text(
                                 'Book Now',
-                                style: fontstyle(color: textcolorwhite),
+                                style: fontstyle(color: colorblack),
                               ),
                             ),
                           ],
@@ -132,7 +132,7 @@ class ServiceView extends StatelessWidget {
                         Text(
                           'About:-',
                           style: fontstyle(
-                            color: colorwhite,
+                            color: colorblack,
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
@@ -145,7 +145,7 @@ class ServiceView extends StatelessWidget {
                     child: Text(
                       service.description,
                       style: fontstyle(
-                        color: colorwhite,
+                        color: colorblack,
                         fontSize: 17,
                       ),
                     ),
@@ -163,7 +163,7 @@ class ServiceView extends StatelessWidget {
                         Text(
                           'available slots in this month:-',
                           style: fontstyle(
-                            color: colorwhite,
+                            color: colorblack,
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
@@ -197,26 +197,26 @@ class ServiceView extends StatelessWidget {
                                 Text(
                                   '${months[date.month - 1]} ${date.day + index}',
                                   style: fontstyle(
-                                    color: textcolorwhite,
+                                    color: colorblack,
                                   ),
                                 ),
                                 const SizedBox(height: 8.0),
                                 Text(
                                   'Slot 1',
                                   style: fontstyle(
-                                    color: textcolorwhite,
+                                    color: colorblack,
                                   ),
                                 ),
                                 Text(
                                   'Slot 2',
                                   style: fontstyle(
-                                    color: textcolorwhite,
+                                    color: colorblack,
                                   ),
                                 ),
                                 Text(
                                   'Slot 3',
                                   style: fontstyle(
-                                    color: textcolorwhite,
+                                    color: colorblack,
                                   ),
                                 ),
                               ],

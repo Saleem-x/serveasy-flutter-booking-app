@@ -42,7 +42,7 @@ class ProductView extends StatelessWidget {
               ],
             ),
             SlidingUpPanel(
-              color: colorblue,
+              color: colorwhite,
               minHeight: size.height / 3,
               maxHeight: size.height - 100,
               borderRadius: BorderRadius.circular(20),
@@ -78,14 +78,14 @@ class ProductView extends StatelessWidget {
                               style: fontstyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
-                                  color: colorwhite),
+                                  color: colorblack),
                             ),
                             SizedBox(
                               height: size.height * 0.02,
                             ),
                             Text(
                               'Price ₹${product.price}',
-                              style: fontstyle(color: colorlightshade),
+                              style: fontstyle(color: colorgreyshade),
                             )
                           ],
                         ),
@@ -97,7 +97,7 @@ class ProductView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                                 side: const BorderSide(
-                                  color: colorwhite,
+                                  color: colorblack,
                                   width: 2.0,
                                 ),
                               ),
@@ -112,7 +112,7 @@ class ProductView extends StatelessWidget {
                               },
                               child: Text(
                                 'Buy Now',
-                                style: fontstyle(color: textcolorwhite),
+                                style: fontstyle(color: colorblack),
                               ),
                             ),
                             OutlinedButton(
@@ -121,7 +121,7 @@ class ProductView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                                 side: const BorderSide(
-                                  color: colorwhite,
+                                  color: colorblack,
                                   width: 2.0,
                                 ),
                               ),
@@ -135,7 +135,7 @@ class ProductView extends StatelessWidget {
                               },
                               child: Text(
                                 'Add to Cart',
-                                style: fontstyle(color: textcolorwhite),
+                                style: fontstyle(color: colorblack),
                               ),
                             ),
                           ],
@@ -156,7 +156,7 @@ class ProductView extends StatelessWidget {
                         Text(
                           'About:-',
                           style: fontstyle(
-                            color: colorwhite,
+                            color: colorblack,
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
@@ -169,7 +169,7 @@ class ProductView extends StatelessWidget {
                     child: Text(
                       product.description,
                       style: fontstyle(
-                        color: colorwhite,
+                        color: colorblack,
                         fontSize: 17,
                       ),
                     ),

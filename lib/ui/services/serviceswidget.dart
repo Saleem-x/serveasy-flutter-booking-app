@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/service/service_bloc.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/constents/ecorations.dart';
 import 'package:project2/models/servicemodel.dart';
 import 'package:project2/functions/getservices.dart';
 import 'package:project2/ui/services/servicesview.dart';
@@ -27,10 +28,11 @@ class ServicesWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
                       // height: size.height / 2,
-                      decoration: BoxDecoration(
-                        color: colorblue,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      // decoration: BoxDecoration(
+                      //   color: colorblue,
+                      //   borderRadius: BorderRadius.circular(10),
+                      // ),
+                      decoration: decoration1,
                       child: Column(
                         children: [
                           Padding(
@@ -57,14 +59,14 @@ class ServicesWidget extends StatelessWidget {
                                     Text(
                                       'From',
                                       style: fontstyle(
-                                          color: colorwhite,
+                                          color: colorblack,
                                           fontSize: 17,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       '₹${state.serviceslist[index].price}/hr',
                                       style: fontstyle(
-                                          color: colorwhite, fontSize: 17),
+                                          color: colorblack, fontSize: 17),
                                     ),
                                   ],
                                 )
@@ -89,10 +91,15 @@ class ServicesWidget extends StatelessWidget {
                           SizedBox(
                             height: size.height * 0.03,
                           ),
-                          Text(
-                            textAlign: TextAlign.center,
-                            state.serviceslist[index].description,
-                            style: fontstyle(color: colorwhite),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 50),
+                            child: Text(
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              state.serviceslist[index].description,
+                              style: fontstyle(color: colorblack),
+                            ),
                           ),
                           SizedBox(
                             height: size.height * 0.03,
@@ -105,7 +112,7 @@ class ServicesWidget extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                                 side: const BorderSide(
-                                  color: colorwhite,
+                                  color: colorblue,
                                   width: 2.0,
                                 ),
                               ),
@@ -131,7 +138,7 @@ class ServicesWidget extends StatelessWidget {
                               child: Text(
                                 'More',
                                 style: fontstyle(
-                                    color: textcolorwhite,
+                                    color: textcolorblue,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),

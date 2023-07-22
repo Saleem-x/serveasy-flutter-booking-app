@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/widgets.dart';
-import 'package:project2/ui/widgets/appbarwidget.dart';
 import 'package:project2/ui/widgets/customerfeedbackwidget.dart';
 import 'package:project2/ui/widgets/productwidget.dart';
 import 'package:project2/ui/widgets/serviceswidget.dart';
@@ -15,129 +16,169 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: size / 5,
-          child: const AppBArWidget(),
-        ),
+        // appBar: PreferredSize(
+        //   preferredSize: size / 5,
+        //   child: const AppBArWidget(),
+        // ),
         drawer: drawerwidget,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: [
-                    Icon(
-                      FontAwesomeIcons.locationDot,
-                      size: 17,
-                    ),
-                    Text('Location')
-                  ],
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              snap: true,
+              pinned: true,
+              // backgroundColor: colorblue,
+              expandedHeight: size.height / 5,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
+                  color: colorblue,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'We Provide You The Best Services',
+                          style:
+                              fontstyleitalic(fontSize: 17, color: colorwhite),
+                        )
+                      ]),
                 ),
+                title: Text(
+                  'Serveasy',
+                  style: fontstyle(letterSpacing: 2),
+                ),
+                centerTitle: true,
               ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: size.height * 0.05,
-                      width: size.width - 20,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Search..',
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
-                              color: colorblue,
-                              width: 2.0,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(
-                              color: Colors.blue,
-                              width: 2.0,
-                            ),
-                          ),
-                          suffixIcon: const Icon(Icons.search),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(FontAwesomeIcons.bell),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(FontAwesomeIcons.magnifyingGlass),
+                ),
+              ],
+            ),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: 20),
+                  //   child: Row(
+                  //     children: [
+                  //       Icon(
+                  //         FontAwesomeIcons.locationDot,
+                  //         size: 17,
+                  //       ),
+                  //       Text('Location')
+                  //     ],
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: size.height * 0.02,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 10),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     children: [
+                  //       SizedBox(
+                  //         height: size.height * 0.05,
+                  //         width: size.width - 20,
+                  //         child: TextFormField(
+                  //           decoration: InputDecoration(
+                  //             hintText: 'Search..',
+                  //             enabledBorder: OutlineInputBorder(
+                  //               borderRadius: BorderRadius.circular(10),
+                  //               borderSide: const BorderSide(
+                  //                 color: colorblue,
+                  //                 width: 2.0,
+                  //               ),
+                  //             ),
+                  //             focusedBorder: OutlineInputBorder(
+                  //               borderRadius: BorderRadius.circular(10),
+                  //               borderSide: const BorderSide(
+                  //                 color: Colors.blue,
+                  //                 width: 2.0,
+                  //               ),
+                  //             ),
+                  //             suffixIcon: const Icon(Icons.search),
+                  //           ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: size.height * 0.02,
+                  // ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Services',
+                          style: fontstyle(
+                              fontSize: 17, color: colorgreyshade.shade500),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: SizedBox(
+                      height: size.height * 0.25,
+                      child: const SearvicesList(),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    child: Row(
+                      children: [
+                        Text(
+                          'products',
+                          style: fontstyle(
+                              fontSize: 17, color: colorgreyshade.shade500),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: SizedBox(
+                      height: size.height * 0.25,
+                      child: const ProductWidget(),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Feedbacks',
+                          style: fontstyle(
+                              fontSize: 17, color: colorgreyshade.shade500),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: Row(
-                  children: [
-                    Text(
-                      'Services',
-                      style: fontstyle(
-                          fontSize: 17, color: colorgreyshade.shade500),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: SizedBox(
-                  height: size.height * 0.25,
-                  child: const SearvicesList(),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: Row(
-                  children: [
-                    Text(
-                      'products',
-                      style: fontstyle(
-                          fontSize: 17, color: colorgreyshade.shade500),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: SizedBox(
-                  height: size.height * 0.25,
-                  child: const ProductWidget(),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: Row(
-                  children: [
-                    Text(
-                      'Feedbacks',
-                      style: fontstyle(
-                          fontSize: 17, color: colorgreyshade.shade500),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: FeedBackWidget(),
+                  )
+                ],
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: FeedBackWidget(),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

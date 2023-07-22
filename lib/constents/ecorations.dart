@@ -56,3 +56,17 @@ final decoration1 = BoxDecoration(
     ),
   ],
 );
+final decoration2 = BoxDecoration(
+  // color: colorblue,
+  borderRadius: const BorderRadius.only(
+      bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black.withOpacity(0.5),
+      spreadRadius: 1.5,
+      blurRadius: 5,
+      offset: const Offset(0, 3),
+      inset: true,
+    ),
+  ],
+);

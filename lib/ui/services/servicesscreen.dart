@@ -16,22 +16,26 @@ class ServicesScreen extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(100),
             child: AppBar(
+              backgroundColor: colorwhite,
               centerTitle: true,
               title: Text(
                 'Services & Products',
-                style: fontstyle(fontSize: 17, fontWeight: FontWeight.bold),
+                style: fontstyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: colorblack),
               ),
               automaticallyImplyLeading: false,
               bottom: TabBar(
                 indicatorPadding:
                     const EdgeInsets.symmetric(horizontal: -25, vertical: 0),
-                labelColor: colorwhite,
+                labelColor: colorblack,
                 isScrollable: true,
                 labelStyle:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 unselectedLabelColor: colorlightshade,
                 indicator: BoxDecoration(
-                  border: Border.all(color: colorwhite),
+                  border: Border.all(color: colorblack),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 tabs: const [
