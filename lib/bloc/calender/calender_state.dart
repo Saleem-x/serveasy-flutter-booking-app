@@ -2,10 +2,11 @@ part of 'calender_bloc.dart';
 
 class CalenderState {
   final DateTime selectedDay;
-
-  CalenderState(this.selectedDay);
+  final String? slot;
+  final List<GetServicemodel>? bookedservices;
+  CalenderState(this.selectedDay, this.slot, this.bookedservices);
 }
 
 class CalenderInitial extends CalenderState {
-  CalenderInitial(super.selectedDay);
+  CalenderInitial(super.selectedDay, super.slot, super.bookedservices);
 }

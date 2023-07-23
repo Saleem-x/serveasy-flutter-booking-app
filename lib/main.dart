@@ -11,6 +11,7 @@ import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/bloc/orderslist/orderlist_bloc.dart';
 import 'package:project2/bloc/product/products_bloc.dart';
 import 'package:project2/bloc/service/service_bloc.dart';
+import 'package:project2/bloc/servicebooknow/servicebooknow_bloc.dart';
 import 'package:project2/bloc/signup/signup_bloc.dart';
 import 'package:project2/bloc/splashscreen/splashscreen_bloc.dart';
 import 'package:project2/constents/colors.dart';
@@ -65,6 +66,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CalenderBloc>(
           create: (context) => CalenderBloc(),
+        ),
+        BlocProvider<ServicebooknowBloc>(
+          create: (context) => ServicebooknowBloc(),
         ),
       ],
       child: MaterialApp(

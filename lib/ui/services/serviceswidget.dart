@@ -49,15 +49,18 @@ class ServicesWidget extends StatelessWidget {
                                   children: [
                                     Container(
                                       height: size.height * 0.05,
-                                      width: size.width * 0.3,
+                                      // width: size.width * 0.3,
                                       decoration: BoxDecoration(
                                         color: colorblue.shade300,
                                         borderRadius: BorderRadius.circular(30),
                                       ),
-                                      child: Center(
-                                        child: Text(
-                                          state.serviceslist![index].name,
-                                          style: fontstyle(color: colorwhite),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Center(
+                                          child: Text(
+                                            state.serviceslist![index].name,
+                                            style: fontstyle(color: colorwhite),
+                                          ),
                                         ),
                                       ),
                                     ),

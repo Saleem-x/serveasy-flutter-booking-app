@@ -36,6 +36,7 @@ Future<void> signUp(String email, String password, String name, String phone,
       await firestore.collection('users').doc(user.uid).set({
         'name': name,
         'age': phone,
+        'profileimage': 'no-img',
       });
       // ignore: use_build_context_synchronously
       context.read<SignupBloc>().add(UserCreated(context));

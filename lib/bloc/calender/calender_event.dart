@@ -8,3 +8,15 @@ class DaySelectingEvent extends CalenderEvent {
 
   DaySelectingEvent(this.selectedDay);
 }
+
+class SloteSelectingEvent extends CalenderEvent {
+  final String slot;
+
+  SloteSelectingEvent(this.slot);
+}
+
+class GetBookedServicesEvent extends CalenderEvent {
+  final List<GetServicemodel> bookedserviceslist;
+
+  GetBookedServicesEvent(this.bookedserviceslist);
+}

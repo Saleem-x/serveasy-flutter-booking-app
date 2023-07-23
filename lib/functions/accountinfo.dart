@@ -39,3 +39,13 @@ logout() async {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   firebaseAuth.signOut();
 }
+
+// updateprofileimage(String userId, BuildContext context)async{
+//   FirebaseFirestore firestore = FirebaseFirestore.instance;
+//   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+//   User user = firebaseAuth.currentUser!;
+
+//   firestore
+//       .collection('users')
+//       .
+// }
