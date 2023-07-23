@@ -46,6 +46,18 @@ addtocart(ProductModel product, int itemcount, BuildContext context) async {
   }
 }
 
+findduplicate(BuildContext context, ProductModel product) async {
+  List<CartItemmodel> cartitems = await getcartitems(context);
+  log(cartitems[0].product.name.toString());
+
+  for (int i = 0; i < cartitems.length; i++) {
+    if (product.id == cartitems[i].product.id) {
+      return true;
+    }
+  }
+  return false;
+}
+
 getuser() async {
   User? user = FirebaseAuth.instance.currentUser;
 
@@ -81,6 +93,7 @@ getcartitems(BuildContext context) async {
     // ignore: use_build_context_synchronously
     context.read<CartBloc>().add(GetAllCartItemsEvent(cartitemlist));
   }
+  return cartitemlist;
 }
 
 removefromcart(CartItemmodel cartitem, BuildContext context) async {
@@ -126,7 +139,7 @@ subtotal(List<CartItemmodel> cartitems) {
   for (CartItemmodel item in cartitems) {
     totalprice += item.product.price * item.itemcount;
   }
-  return totalprice + carttaxcalculate(cartitems);
+  return totalprice;
 }
 
 totalproduct(List<CartItemmodel> cartitems) {

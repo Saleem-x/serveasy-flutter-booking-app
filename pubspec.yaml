@@ -46,6 +46,7 @@ dependencies:
   rflutter_alert: ^2.0.7
   shared_preferences: ^2.2.0
   sliding_up_panel: ^2.0.0+1
+  table_calendar: ^3.0.9
   zoom_tap_animation: ^1.1.0
 
 dev_dependencies:

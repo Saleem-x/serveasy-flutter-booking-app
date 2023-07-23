@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/bloc/bottomnavbar/bottomnavbar_bloc.dart';
 import 'package:project2/bloc/buynow/buynowselection_bloc.dart';
+import 'package:project2/bloc/calender/calender_bloc.dart';
 import 'package:project2/bloc/cart/cart_bloc.dart';
 import 'package:project2/bloc/checkout/checkout_bloc.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
@@ -61,6 +62,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CheckoutBloc>(
           create: (context) => CheckoutBloc(),
+        ),
+        BlocProvider<CalenderBloc>(
+          create: (context) => CalenderBloc(),
         ),
       ],
       child: MaterialApp(

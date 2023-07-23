@@ -1,7 +1,7 @@
 part of 'products_bloc.dart';
 
 class ProductsState {
-  final List<ProductModel> productlist;
+  final List<ProductModel>? productlist;
 
   ProductsState(this.productlist);
 }

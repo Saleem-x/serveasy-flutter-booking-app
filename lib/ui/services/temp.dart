@@ -83,3 +83,59 @@
 //     );
 //   }
 // }
+
+// ! slot system temp->
+
+/* 
+                    GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                      ),
+                      itemCount: 30 - date.day,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            margin: const EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '${months[date.month - 1]} ${date.day + index}',
+                                  style: fontstyle(
+                                    color: colorblack,
+                                  ),
+                                ),
+                                const SizedBox(height: 8.0),
+                                Text(
+                                  'Slot 1',
+                                  style: fontstyle(
+                                    color: colorblack,
+                                  ),
+                                ),
+                                Text(
+                                  'Slot 2',
+                                  style: fontstyle(
+                                    color: colorblack,
+                                  ),
+                                ),
+                                Text(
+                                  'Slot 3',
+                                  style: fontstyle(
+                                    color: colorblack,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ), */

@@ -318,7 +318,7 @@ class CartScreen extends StatelessWidget {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          subtotal(state.cartitems!).toString(),
+                                          '${subtotal(state.cartitems!) + carttaxcalculate(state.cartitems!)}',
                                           style: fontstyle(color: colorwhite),
                                         ),
                                       ],
@@ -344,7 +344,8 @@ class CartScreen extends StatelessWidget {
                                 MaterialPageRoute(
                                   builder: (context) => CartCheckoutScreen(
                                     cartitemslist: state.cartitems!,
-                                    total: subtotal(state.cartitems!),
+                                    total: subtotal(state.cartitems!) +
+                                        carttaxcalculate(state.cartitems!),
                                   ),
                                 ),
                               );

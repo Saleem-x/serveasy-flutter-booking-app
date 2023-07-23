@@ -1,7 +1,7 @@
 part of 'service_bloc.dart';
 
 class ServiceState {
-  final List<ServiceModel> serviceslist;
+  final List<ServiceModel>? serviceslist;
 
   ServiceState(this.serviceslist);
 }

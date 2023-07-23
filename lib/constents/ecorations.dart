@@ -70,3 +70,15 @@ final decoration2 = BoxDecoration(
     ),
   ],
 );
+final decoration3 = BoxDecoration(
+  borderRadius: BorderRadius.circular(5),
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black.withOpacity(0.5),
+      spreadRadius: 1.5,
+      blurRadius: 5,
+      offset: const Offset(0, 3),
+      inset: true,
+    ),
+  ],
+);

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -14,68 +15,104 @@ class ProductsScreen extends StatelessWidget {
     // final size = MediaQuery.of(context).size;
     return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
-        return state.productlist.isEmpty
+        return state.productlist == null
             ? Center(
                 child: Lottie.asset('assets/animations/waitinganimation.json'))
-            : GridView.builder(
-                itemCount: state.productlist.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 0.7),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductView(
-                          product: state.productlist[index],
+            : state.productlist!.isEmpty
+                ? const Center(
+                    child: Text(' currently No Products is Available'),
+                  )
+                : GridView.builder(
+                    itemCount: state.productlist!.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.7),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductView(
+                              product: state.productlist![index],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(children: [
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: colorgreyshade,
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(children: [
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: colorgreyshade,
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20),
+                                    ),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            state.productlist![index].imageUrl),
+                                        fit: BoxFit.cover)),
+                                // width: size.width / 2,
+                              ),
+                            ),
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                decoration: decoration2,
+                                // height: size.height * 0.09,
+                                // decoration: const BoxDecoration(
+                                //     color: colorblue,
+                                //     borderRadius: BorderRadius.only(
+                                //         bottomLeft: Radius.circular(20),
+                                //         bottomRight: Radius.circular(20))),
+                                // width: size.width / 2,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              state.productlist![index].name,
+                                              style: fontstyle(
+                                                  color: colorblack,
+                                                  fontSize: 17),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              '₹${state.productlist![index].price.toString()}',
+                                              style: fontstyle(
+                                                  color: colorblack,
+                                                  fontSize: 17),
+                                            ),
+                                            Container(
+                                              decoration: decoration3,
+                                              child: const Center(
+                                                  child: Icon(
+                                                      CupertinoIcons.forward)),
+                                            )
+                                          ],
+                                        ),
+                                      ]),
                                 ),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        state.productlist[index].imageUrl),
-                                    fit: BoxFit.cover)),
-                            // width: size.width / 2,
-                          ),
+                              ),
+                            )
+                          ]),
                         ),
-                        Flexible(
-                          flex: 1,
-                          child: Container(
-                            decoration: decoration2,
-                            // height: size.height * 0.09,
-                            // decoration: const BoxDecoration(
-                            //     color: colorblue,
-                            //     borderRadius: BorderRadius.only(
-                            //         bottomLeft: Radius.circular(20),
-                            //         bottomRight: Radius.circular(20))),
-                            // width: size.width / 2,
-                            child: Center(
-                                child: Text(
-                              state.productlist[index].name,
-                              style: fontstyle(color: colorblack, fontSize: 17),
-                            )),
-                          ),
-                        )
-                      ]),
-                    ),
+                      );
+                    },
                   );
-                },
-              );
       },
     );
   }

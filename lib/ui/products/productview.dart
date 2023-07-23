@@ -126,7 +126,31 @@ class ProductView extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () async {
-                                await addtocart(product, 1, context);
+                                bool isAlready =
+                                    await findduplicate(context, product);
+                                if (isAlready) {
+                                  // ignore: use_build_context_synchronously
+                                  ScaffoldMessenger.of(context)
+                                    ..removeCurrentSnackBar()
+                                    ..showSnackBar(const SnackBar(
+                                        backgroundColor: Colors.green,
+                                        content: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.info,
+                                              color: colorwhite,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                                'Product product Allready in cart cart')
+                                          ],
+                                        )));
+                                } else {
+                                  // ignore: use_build_context_synchronously
+                                  await addtocart(product, 1, context);
+                                }
                               },
                               child: Text(
                                 'Add to Cart',

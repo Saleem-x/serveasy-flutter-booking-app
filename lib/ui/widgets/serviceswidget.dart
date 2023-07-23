@@ -18,69 +18,73 @@ class SearvicesList extends StatelessWidget {
     });
     return BlocBuilder<ServiceBloc, ServiceState>(
       builder: (context, state) {
-        return state.serviceslist.isEmpty
+        return state.serviceslist == null
             ? Center(
                 child: Lottie.asset('assets/animations/waitinganimation.json'),
               )
-            : ListView.builder(
-                itemCount: state.serviceslist.length > 3
-                    ? 3
-                    : state.serviceslist.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ServiceView(
-                          service: state.serviceslist[index],
-                        ),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(children: [
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: colorgreyshade,
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20),
-                                ),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        state.serviceslist[index].imageUrl),
-                                    fit: BoxFit.cover)),
-                            width: size.width / 3,
+            : state.serviceslist!.isEmpty
+                ? const Center(
+                    child: Text(' currently No Service is Available'),
+                  )
+                : ListView.builder(
+                    itemCount: state.serviceslist!.length > 3
+                        ? 3
+                        : state.serviceslist!.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ServiceView(
+                              service: state.serviceslist![index],
+                            ),
                           ),
                         ),
-                        Flexible(
-                          flex: 1,
-                          child: Container(
-                            height: size.height * 0.09,
-                            decoration: BoxDecoration(
-                              color: colorwhite,
-                              boxShadow: [insetboxshadow],
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(children: [
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: colorgreyshade,
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20),
+                                    ),
+                                    image: DecorationImage(
+                                        image: NetworkImage(state
+                                            .serviceslist![index].imageUrl),
+                                        fit: BoxFit.cover)),
+                                width: size.width / 3,
                               ),
                             ),
-                            width: size.width / 3,
-                            child: Center(
-                                child: Text(
-                              state.serviceslist[index].name,
-                              style: fontstyle(fontSize: 17),
-                            )),
-                          ),
-                        )
-                      ]),
-                    ),
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                height: size.height * 0.09,
+                                decoration: BoxDecoration(
+                                  color: colorwhite,
+                                  boxShadow: [insetboxshadow],
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    bottomRight: Radius.circular(20),
+                                  ),
+                                ),
+                                width: size.width / 3,
+                                child: Center(
+                                    child: Text(
+                                  state.serviceslist![index].name,
+                                  style: fontstyle(fontSize: 17),
+                                )),
+                              ),
+                            )
+                          ]),
+                        ),
+                      );
+                    },
                   );
-                },
-              );
       },
     );
   }
