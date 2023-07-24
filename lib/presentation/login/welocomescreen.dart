@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/ui/login/loginscreen.dart';
-import 'package:project2/ui/login/signupscreen.dart';
+import 'package:project2/presentation/login/loginscreen.dart';
+import 'package:project2/presentation/login/signupscreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

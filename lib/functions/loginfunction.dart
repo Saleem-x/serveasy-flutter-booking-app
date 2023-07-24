@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/bloc/signup/signup_bloc.dart';
-import 'package:project2/ui/widgets/bottomnavigation.dart';
+import 'package:project2/presentation/widgets/bottomnavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:project2/ui/widgets/bottomnavigation.dart';
 

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:project2/ui/login/welocomescreen.dart';
-import 'package:project2/ui/widgets/bottomnavigation.dart';
+import 'package:project2/presentation/login/welocomescreen.dart';
+import 'package:project2/presentation/widgets/bottomnavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'splashscreen_event.dart';

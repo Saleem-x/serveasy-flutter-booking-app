@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/ui/notification/notificationscreen.dart';
+import 'package:project2/presentation/notification/notificationscreen.dart';
 
 class AppBArWidget extends StatelessWidget {
   const AppBArWidget({super.key});

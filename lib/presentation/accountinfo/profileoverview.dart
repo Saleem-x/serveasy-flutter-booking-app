@@ -8,7 +8,7 @@ import 'package:project2/bloc/updateuser/updateuser_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/updateuser.dart';
 
-import 'package:project2/ui/widgets/textfieldwidget.dart';
+import 'package:project2/presentation/widgets/textfieldwidget.dart';
 
 import '../../functions/accountinfo.dart';
 
@@ -203,6 +203,8 @@ class _ProfileOverViewState extends State<ProfileOverView> {
                                           .read<UpdateuserBloc>()
                                           .add(LoadingEvent(true));
                                       if (state.selectedimage != null) {
+                                        getAllImagesFromProfileimages(
+                                            state.imageurl);
                                         String imageurl =
                                             await uploadprofileimage(
                                                 state.selectedimage!, false);
@@ -220,7 +222,7 @@ class _ProfileOverViewState extends State<ProfileOverView> {
                                         context
                                             .read<UpdateuserBloc>()
                                             .add(LoadingEvent(false));
-                                      }
+                                      } else {}
                                       // ignore: use_build_context_synchronously
                                       context
                                           .read<UpdateuserBloc>()

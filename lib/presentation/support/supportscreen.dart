@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/ui/widgets/appbarwidget.dart';
+import 'package:project2/presentation/widgets/appbarwidget.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});

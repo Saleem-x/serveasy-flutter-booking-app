@@ -7,7 +7,7 @@ import 'package:project2/bloc/cart/cart_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
 import 'package:project2/functions/addtocart.dart';
-import 'package:project2/ui/cart/checkoutscreen.dart';
+import 'package:project2/presentation/cart/checkoutscreen.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class CartScreen extends StatelessWidget {

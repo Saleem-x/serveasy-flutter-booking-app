@@ -6,7 +6,7 @@ import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
 import 'package:project2/models/servicemodel.dart';
 import 'package:project2/functions/getservices.dart';
-import 'package:project2/ui/services/servicesview.dart';
+import 'package:project2/presentation/services/servicesview.dart';
 
 class ServicesWidget extends StatelessWidget {
   const ServicesWidget({super.key});

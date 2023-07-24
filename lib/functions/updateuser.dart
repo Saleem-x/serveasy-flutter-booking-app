@@ -109,3 +109,30 @@ updateProfile(
     log(e.toString());
   }
 }
+
+Future<void> getAllImagesFromProfileimages(String imagepath) async {
+  log(imagepath);
+  List<String> imageUrls = [];
+  try {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference storageRef = storage.ref().child('profile-images');
+    ListResult result = await storageRef.listAll();
+    for (Reference ref in result.items) {
+      String imageUrl = await ref.getDownloadURL();
+      imageUrls.add(imageUrl);
+      log(imageUrl);
+    }
+  } catch (e) {
+    log('Error retrieving images from collection: $e');
+  }
+
+  for (int i = 0; i < imageUrls.length; i++) {
+    if (imageUrls[i] == imagepath) {
+      FirebaseStorage storage = FirebaseStorage.instance;
+      Reference fileRef = storage.refFromURL(imagepath);
+
+      await fileRef.delete();
+      log('yes');
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,11 +18,17 @@ import 'package:project2/bloc/splashscreen/splashscreen_bloc.dart';
 import 'package:project2/bloc/updateuser/updateuser_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/firebase_options.dart';
-import 'package:project2/ui/splashscreen/splashscreen.dart';
+import 'package:project2/presentation/splashscreen/splashscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseAppCheck.instance.activate(
+    webRecaptchaSiteKey: 'recaptcha-v3-site-key',
+
+    // Set androidProvider to `AndroidProvider.debug`
+    androidProvider: AndroidProvider.debug,
+  );
   runApp(const MyApp());
 }
 

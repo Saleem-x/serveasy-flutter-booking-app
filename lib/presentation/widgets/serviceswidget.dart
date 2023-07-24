@@ -6,7 +6,7 @@ import 'package:project2/bloc/service/service_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
 import 'package:project2/functions/getservices.dart';
-import 'package:project2/ui/services/servicesview.dart';
+import 'package:project2/presentation/services/servicesview.dart';
 
 class SearvicesList extends StatelessWidget {
   const SearvicesList({super.key});

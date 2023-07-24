@@ -3,9 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/widgets.dart';
-import 'package:project2/ui/widgets/customerfeedbackwidget.dart';
-import 'package:project2/ui/widgets/productwidget.dart';
-import 'package:project2/ui/widgets/serviceswidget.dart';
+import 'package:project2/presentation/widgets/customerfeedbackwidget.dart';
+import 'package:project2/presentation/widgets/productwidget.dart';
+import 'package:project2/presentation/widgets/serviceswidget.dart';
+import 'package:project2/search/searchscreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,10 +16,6 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        // appBar: PreferredSize(
-        //   preferredSize: size / 5,
-        //   child: const AppBArWidget(),
-        // ),
         drawer: drawerwidget,
         body: CustomScrollView(
           slivers: [
@@ -30,16 +27,18 @@ class HomeScreen extends StatelessWidget {
               expandedHeight: size.height / 5,
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
-                  color: colorblue,
+                  decoration: const BoxDecoration(
+                    color: colorblue,
+                  ),
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'We Provide You The Best Services',
-                          style:
-                              fontstyleitalic(fontSize: 17, color: colorwhite),
-                        )
-                      ]),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'We Provide You The Best Services',
+                        style: fontstyleitalic(fontSize: 17, color: colorwhite),
+                      )
+                    ],
+                  ),
                 ),
                 title: Text(
                   'Serveasy',
@@ -53,7 +52,13 @@ class HomeScreen extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.bell),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SearchScreen(),
+                        ));
+                  },
                   icon: const Icon(FontAwesomeIcons.magnifyingGlass),
                 ),
               ],

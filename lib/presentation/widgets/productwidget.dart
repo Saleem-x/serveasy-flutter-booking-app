@@ -6,7 +6,7 @@ import 'package:project2/bloc/product/products_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
 import 'package:project2/functions/getproducts.dart';
-import 'package:project2/ui/products/productview.dart';
+import 'package:project2/presentation/products/productview.dart';
 
 class ProductWidget extends StatelessWidget {
   const ProductWidget({super.key});

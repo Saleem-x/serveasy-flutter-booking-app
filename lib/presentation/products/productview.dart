@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/addtocart.dart';
 import 'package:project2/models/productmodel.dart';
-import 'package:project2/ui/products/buynowscreen.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:project2/presentation/products/buynowscreen.dart';
 
 class ProductView extends StatelessWidget {
   final ProductModel product;
@@ -15,11 +14,25 @@ class ProductView extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: [
-            Stack(
-              children: [
-                Container(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              snap: true,
+              pinned: true,
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    CupertinoIcons.back,
+                    color: colorwhite,
+                  )),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              expandedHeight: size.height / 2,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
                   height: size.height / 1.5,
                   decoration: BoxDecoration(
                     color: colorblue,
@@ -28,25 +41,10 @@ class ProductView extends StatelessWidget {
                         fit: BoxFit.cover),
                   ),
                 ),
-                Positioned(
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(
-                      CupertinoIcons.back,
-                      color: colorwhite,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-            SlidingUpPanel(
-              color: colorwhite,
-              minHeight: size.height / 3,
-              maxHeight: size.height - 100,
-              borderRadius: BorderRadius.circular(20),
-              panel: Column(
+            SliverToBoxAdapter(
+              child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -70,94 +68,100 @@ class ProductView extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              product.name,
-                              style: fontstyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: colorblack),
-                            ),
-                            SizedBox(
-                              height: size.height * 0.02,
-                            ),
-                            Text(
-                              'Price ₹${product.price}',
-                              style: fontstyle(color: colorgreyshade),
-                            )
-                          ],
+                        Flexible(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.name,
+                                style: fontstyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: colorblack),
+                              ),
+                              SizedBox(
+                                height: size.height * 0.02,
+                              ),
+                              Text(
+                                'Price ₹${product.price}',
+                                style: fontstyle(color: colorgreyshade),
+                              )
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: [
-                            OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
+                        Flexible(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  side: const BorderSide(
+                                    color: colorblack,
+                                    width: 2.0,
+                                  ),
                                 ),
-                                side: const BorderSide(
-                                  color: colorblack,
-                                  width: 2.0,
-                                ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => BuyNowScreen(
-                                        product: product,
-                                      ),
-                                    ));
-                              },
-                              child: Text(
-                                'Buy Now',
-                                style: fontstyle(color: colorblack),
-                              ),
-                            ),
-                            OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                side: const BorderSide(
-                                  color: colorblack,
-                                  width: 2.0,
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => BuyNowScreen(
+                                          product: product,
+                                        ),
+                                      ));
+                                },
+                                child: Text(
+                                  'Buy Now',
+                                  style: fontstyle(color: colorblack),
                                 ),
                               ),
-                              onPressed: () async {
-                                bool isAlready =
-                                    await findduplicate(context, product);
-                                if (isAlready) {
-                                  // ignore: use_build_context_synchronously
-                                  ScaffoldMessenger.of(context)
-                                    ..removeCurrentSnackBar()
-                                    ..showSnackBar(const SnackBar(
-                                        backgroundColor: Colors.green,
-                                        content: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.info,
-                                              color: colorwhite,
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Text(
-                                                'Product product Allready in cart cart')
-                                          ],
-                                        )));
-                                } else {
-                                  // ignore: use_build_context_synchronously
-                                  await addtocart(product, 1, context);
-                                }
-                              },
-                              child: Text(
-                                'Add to Cart',
-                                style: fontstyle(color: colorblack),
+                              OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  side: const BorderSide(
+                                    color: colorblack,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  bool isAlready =
+                                      await findduplicate(context, product);
+                                  if (isAlready) {
+                                    // ignore: use_build_context_synchronously
+                                    ScaffoldMessenger.of(context)
+                                      ..removeCurrentSnackBar()
+                                      ..showSnackBar(const SnackBar(
+                                          backgroundColor: Colors.green,
+                                          content: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.info,
+                                                color: colorwhite,
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                  'Product product Allready in cart cart')
+                                            ],
+                                          )));
+                                  } else {
+                                    // ignore: use_build_context_synchronously
+                                    await addtocart(product, 1, context);
+                                  }
+                                },
+                                child: Text(
+                                  'Add to Cart',
+                                  style: fontstyle(color: colorblack),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         )
                       ],
                     ),
@@ -185,12 +189,16 @@ class ProductView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      product.description,
-                      style: fontstyle(
-                        color: colorblack,
-                        fontSize: 17,
-                      ),
+                    child: Row(
+                      children: [
+                        Text(
+                          product.description,
+                          style: fontstyle(
+                            color: colorblack,
+                            fontSize: 17,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(

@@ -6,10 +6,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/accountinfo.dart';
-import 'package:project2/ui/accountinfo/profileoverview.dart';
-import 'package:project2/ui/cart/cartscreen.dart';
-import 'package:project2/ui/orders/orderslist.dart';
-import 'package:project2/ui/splashscreen/splashscreen.dart';
+import 'package:project2/presentation/accountinfo/profileoverview.dart';
+import 'package:project2/presentation/address/addreassscreen.dart';
+import 'package:project2/presentation/cart/cartscreen.dart';
+import 'package:project2/presentation/orders/orderslist.dart';
+import 'package:project2/presentation/splashscreen/splashscreen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -133,7 +134,13 @@ class AccountInfoScreen extends StatelessWidget {
               height: size.height * 0.05,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddressScreen(),
+                    ));
+              },
               child: ProfileScreenContainer(
                 size: size,
                 title: 'Address',
@@ -147,7 +154,7 @@ class AccountInfoScreen extends StatelessWidget {
                   )),
               child: ProfileScreenContainer(
                 size: size,
-                title: 'Orders',
+                title: 'Bookings',
               ),
             ),
             InkWell(

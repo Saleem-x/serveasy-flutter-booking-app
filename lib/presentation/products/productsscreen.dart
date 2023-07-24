@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/product/products_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
-import 'package:project2/ui/products/productview.dart';
+import 'package:project2/presentation/products/productview.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});

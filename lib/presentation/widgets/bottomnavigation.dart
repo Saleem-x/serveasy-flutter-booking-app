@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/bloc/bottomnavbar/bottomnavbar_bloc.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/ui/accountinfo/accountinfo.dart';
-import 'package:project2/ui/home/homescreen.dart';
-import 'package:project2/ui/services/servicesscreen.dart';
-import 'package:project2/ui/support/supportscreen.dart';
+import 'package:project2/presentation/accountinfo/accountinfo.dart';
+import 'package:project2/presentation/home/homescreen.dart';
+import 'package:project2/presentation/services/servicesscreen.dart';
+import 'package:project2/presentation/support/supportscreen.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class BottomNavBarWidget extends StatelessWidget {

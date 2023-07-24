@@ -9,7 +9,7 @@ import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/booking.dart';
 import 'package:project2/models/servicemodel.dart';
 import 'package:project2/models/servisebookingmodel.dart';
-import 'package:project2/ui/services/booknow.dart';
+import 'package:project2/presentation/services/booknow.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class ServiceView extends StatelessWidget {

@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/signup.dart';
-import 'package:project2/ui/widgets/textfieldwidget.dart';
+import 'package:project2/presentation/widgets/textfieldwidget.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

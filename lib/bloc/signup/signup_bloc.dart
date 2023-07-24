@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:project2/ui/widgets/bottomnavigation.dart';
+import 'package:project2/presentation/widgets/bottomnavigation.dart';
 part 'signup_event.dart';
 part 'signup_state.dart';
 
