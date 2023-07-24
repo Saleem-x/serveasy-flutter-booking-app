@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -101,6 +100,7 @@ class AccountInfoScreen extends StatelessWidget {
                               ),
                               Text(
                                 state.phone,
+                                overflow: TextOverflow.ellipsis,
                                 style:
                                     fontstyle(color: colorwhite, fontSize: 15),
                               ),

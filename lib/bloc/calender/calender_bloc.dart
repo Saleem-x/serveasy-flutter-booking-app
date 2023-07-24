@@ -11,7 +11,7 @@ class CalenderBloc extends Bloc<CalenderEvent, CalenderState> {
       emit(CalenderState(event.selectedDay, state.slot, state.bookedservices));
     });
     on<SloteSelectingEvent>((event, emit) {
-      emit(CalenderState(state.selectedDay, event.slot, state.bookedservices));
+      emit(CalenderState(state.selectedDay, event.slot!, state.bookedservices));
     });
     on<GetBookedServicesEvent>((event, emit) {
       emit(CalenderState(

@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/loginfunction.dart';
+import 'package:project2/functions/signup.dart';
 import 'package:project2/ui/widgets/textfieldwidget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -103,13 +104,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const CircleAvatar(
-                            radius: 17,
-                            child: CircleAvatar(
-                              backgroundColor: colorwhite,
-                              radius: 15,
-                              child:
-                                  Center(child: Icon(FontAwesomeIcons.google)),
+                          InkWell(
+                            onTap: () => signInWithGoogle(context),
+                            child: const CircleAvatar(
+                              radius: 17,
+                              child: CircleAvatar(
+                                backgroundColor: colorwhite,
+                                radius: 15,
+                                child: Center(
+                                    child: Icon(FontAwesomeIcons.google)),
+                              ),
                             ),
                           ),
                           SizedBox(

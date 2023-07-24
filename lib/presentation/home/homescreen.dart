@@ -64,56 +64,6 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.01,
                   ),
-                  // const Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 20),
-                  //   child: Row(
-                  //     children: [
-                  //       Icon(
-                  //         FontAwesomeIcons.locationDot,
-                  //         size: 17,
-                  //       ),
-                  //       Text('Location')
-                  //     ],
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: size.height * 0.02,
-                  // ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       SizedBox(
-                  //         height: size.height * 0.05,
-                  //         width: size.width - 20,
-                  //         child: TextFormField(
-                  //           decoration: InputDecoration(
-                  //             hintText: 'Search..',
-                  //             enabledBorder: OutlineInputBorder(
-                  //               borderRadius: BorderRadius.circular(10),
-                  //               borderSide: const BorderSide(
-                  //                 color: colorblue,
-                  //                 width: 2.0,
-                  //               ),
-                  //             ),
-                  //             focusedBorder: OutlineInputBorder(
-                  //               borderRadius: BorderRadius.circular(10),
-                  //               borderSide: const BorderSide(
-                  //                 color: Colors.blue,
-                  //                 width: 2.0,
-                  //               ),
-                  //             ),
-                  //             suffixIcon: const Icon(Icons.search),
-                  //           ),
-                  //         ),
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: size.height * 0.02,
-                  // ),
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 5),

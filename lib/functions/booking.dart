@@ -46,6 +46,8 @@ bookService(
                 )
               ],
             )));
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
     } catch (e) {
       log(e.toString());
     }

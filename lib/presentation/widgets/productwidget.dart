@@ -63,7 +63,6 @@ class ProductWidget extends StatelessWidget {
                             Flexible(
                               flex: 1,
                               child: Container(
-                                height: size.height * 0.09,
                                 decoration: BoxDecoration(
                                   color: colorwhite,
                                   boxShadow: [insetboxshadow],
@@ -76,36 +75,37 @@ class ProductWidget extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text(
-                                          state.productlist![index].name,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: fontstyle(
-                                              color: colorblack, fontSize: 17),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              '₹${state.productlist![index].price.toString()}',
-                                              style: fontstyle(
-                                                  color: colorblack,
-                                                  fontSize: 17),
-                                            ),
-                                            Container(
-                                              decoration: decoration3,
-                                              child: const Center(
-                                                  child: Icon(
-                                                      CupertinoIcons.forward)),
-                                            )
-                                          ],
-                                        ),
-                                      ]),
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        state.productlist![index].name,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: fontstyle(
+                                            color: colorblack, fontSize: 17),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            '₹${state.productlist![index].price.toString()}',
+                                            style: fontstyle(
+                                                color: colorblack,
+                                                fontSize: 17),
+                                          ),
+                                          Container(
+                                            decoration: decoration3,
+                                            child: const Center(
+                                                child: Icon(
+                                                    CupertinoIcons.forward)),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             )

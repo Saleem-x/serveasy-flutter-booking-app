@@ -58,10 +58,17 @@ class _BookNowScreenState extends State<BookNowScreen> {
                               ),
                               Positioned(
                                 child: IconButton(
-                                  onPressed: () {
+                                  onPressed: () async {
+                                    List<GetServicemodel> bookedlist =
+                                        await getbookedservices(DateTime.now());
+                                    // ignore: use_build_context_synchronously
+                                    context.read<CalenderBloc>().add(
+                                        GetBookedServicesEvent(bookedlist));
+                                    // ignore: use_build_context_synchronously
                                     context
                                         .read<CalenderBloc>()
                                         .add(DaySelectingEvent(DateTime.now()));
+                                    // ignore: use_build_context_synchronously
                                     Navigator.of(context).pop();
                                   },
                                   icon: const Icon(

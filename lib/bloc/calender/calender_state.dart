@@ -2,7 +2,7 @@ part of 'calender_bloc.dart';
 
 class CalenderState {
   final DateTime selectedDay;
-  final String? slot;
+  final int? slot;
   final List<GetServicemodel>? bookedservices;
   CalenderState(this.selectedDay, this.slot, this.bookedservices);
 }

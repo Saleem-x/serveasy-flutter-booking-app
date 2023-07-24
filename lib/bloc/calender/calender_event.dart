@@ -10,7 +10,7 @@ class DaySelectingEvent extends CalenderEvent {
 }
 
 class SloteSelectingEvent extends CalenderEvent {
-  final String slot;
+  final int? slot;
 
   SloteSelectingEvent(this.slot);
 }

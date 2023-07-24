@@ -18,7 +18,7 @@ class FeedBackWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 color: colorlightshade,
                 borderRadius: BorderRadius.circular(10)),
-            height: size.height / 5,
+            // height: size.height / 5,
             child: Column(children: [
               Padding(
                 padding:

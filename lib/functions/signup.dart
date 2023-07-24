@@ -62,6 +62,7 @@ signInWithGoogle(BuildContext context) async {
   final FirebaseAuth auth = FirebaseAuth.instance;
   auth.signOut();
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  googleSignIn.disconnect();
   log('2');
   final GoogleSignInAccount? googleSignInAccount;
   if (Platform.isAndroid) {
@@ -108,14 +109,44 @@ signInWithGoogle(BuildContext context) async {
 }
 
 uploaduserdetails(GoogleSignInAccount account, User user) async {
+  List details = await getuserdetails();
   try {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     await firestore.collection('users').doc(user.uid).set({
-      'name': user.displayName,
-      'age': user.email,
-      'profileimage': user.photoURL,
+      'name': details[0] == user.displayName ? user.displayName : details[0],
+      'age': details[1] == user.email ? user.displayName : details[1],
+      'profileimage':
+          details[2] == user.photoURL ? user.displayName : details[2],
     });
   } catch (e) {
     log('Sign up error: $e');
   }
+}
+
+getuserdetails() async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  User user = firebaseAuth.currentUser!;
+
+  firestore
+      .collection('users')
+      .doc(user.uid)
+      .get()
+      .then((DocumentSnapshot documentSnapshot) {
+    if (documentSnapshot.exists) {
+      Map<String, dynamic> data =
+          documentSnapshot.data() as Map<String, dynamic>;
+
+      String name = data['name'];
+      String phone = data['age'];
+      String imgageurl = data['profileimage'];
+
+      return [name, phone, imgageurl];
+    } else {
+      return [];
+    }
+    // ignore: body_might_complete_normally_catch_error
+  }).catchError((error) {
+    log('Error getting document: $error');
+  });
 }
