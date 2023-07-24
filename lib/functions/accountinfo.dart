@@ -6,14 +6,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 
-void fetchUserData(String userId, BuildContext context) {
+void fetchUserData(BuildContext context) {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   User user = firebaseAuth.currentUser!;
 
   firestore
       .collection('users')
-      .doc(userId)
+      .doc(user.uid)
       .get()
       .then((DocumentSnapshot documentSnapshot) {
     if (documentSnapshot.exists) {
@@ -22,13 +22,19 @@ void fetchUserData(String userId, BuildContext context) {
 
       String name = data['name'];
       String phone = data['age'];
+      String imgageurl = data['profileimage'];
 
-      context.read<AccountinfoBloc>().add(GetUserDetailsEvent(name, phone));
+      context
+          .read<AccountinfoBloc>()
+          .add(GetUserDetailsEvent(name, phone, imgageurl));
     } else {
       log('Document does not exist');
       final name = user.email!.split('@');
       final email = user.email!;
-      context.read<AccountinfoBloc>().add(GetUserDetailsEvent(name[0], email));
+      String image = 'no-img';
+      context
+          .read<AccountinfoBloc>()
+          .add(GetUserDetailsEvent(name[0], email, image));
     }
   }).catchError((error) {
     log('Error getting document: $error');
@@ -40,12 +46,13 @@ logout() async {
   firebaseAuth.signOut();
 }
 
-// updateprofileimage(String userId, BuildContext context)async{
+// updateprofileimage(String userId, BuildContext context) async {
 //   FirebaseFirestore firestore = FirebaseFirestore.instance;
 //   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 //   User user = firebaseAuth.currentUser!;
 
-//   firestore
-//       .collection('users')
-//       .
+//   firestore.collection('users').doc(userId).update({
+//     'name':
+//   });
 // }
+

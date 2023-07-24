@@ -5,9 +5,9 @@ part 'accountinfo_event.dart';
 part 'accountinfo_state.dart';
 
 class AccountinfoBloc extends Bloc<AccountinfoEvent, AccountinfoState> {
-  AccountinfoBloc() : super(AccountinfoInitial('Username', 'phone')) {
+  AccountinfoBloc() : super(AccountinfoInitial('Username', 'phone', 'no-img')) {
     on<GetUserDetailsEvent>((event, emit) {
-      emit(AccountinfoState(event.name, event.phone));
+      emit(AccountinfoState(event.name, event.phone, event.imageurl));
     });
   }
 }

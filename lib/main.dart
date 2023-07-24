@@ -14,6 +14,7 @@ import 'package:project2/bloc/service/service_bloc.dart';
 import 'package:project2/bloc/servicebooknow/servicebooknow_bloc.dart';
 import 'package:project2/bloc/signup/signup_bloc.dart';
 import 'package:project2/bloc/splashscreen/splashscreen_bloc.dart';
+import 'package:project2/bloc/updateuser/updateuser_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/firebase_options.dart';
 import 'package:project2/ui/splashscreen/splashscreen.dart';
@@ -69,6 +70,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ServicebooknowBloc>(
           create: (context) => ServicebooknowBloc(),
+        ),
+        BlocProvider<UpdateuserBloc>(
+          create: (context) => UpdateuserBloc(),
         ),
       ],
       child: MaterialApp(

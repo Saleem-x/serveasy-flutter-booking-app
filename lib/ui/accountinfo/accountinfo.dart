@@ -1,10 +1,13 @@
+import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/accountinfo.dart';
+import 'package:project2/ui/accountinfo/profileoverview.dart';
 import 'package:project2/ui/cart/cartscreen.dart';
 import 'package:project2/ui/orders/orderslist.dart';
 import 'package:project2/ui/splashscreen/splashscreen.dart';
@@ -17,66 +20,77 @@ class AccountInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context
-          .read<AccountinfoBloc>()
-          .add(GetUserDetailsEvent('Username', 'Phone'));
-      User? user = FirebaseAuth.instance.currentUser;
-      fetchUserData(user!.uid, context);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      fetchUserData(context);
+      // context
+      //     .read<AccountinfoBloc>()
+      //     .add(GetUserDetailsEvent('Username', 'Phone', 'no-img'));
     });
 
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
-            Stack(
-              children: [
-                Container(
-                  height: size.height / 4,
-                  width: size.width,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/Rectanglewavebg.png'),
-                        fit: BoxFit.fill),
-                  ),
-                ),
-                Positioned(
-                  top: 50,
-                  left: 50,
-                  right: 10,
-                  child: Row(
-                    children: [
-                      Stack(
+            BlocBuilder<AccountinfoBloc, AccountinfoState>(
+              builder: (context, state) {
+                return Stack(
+                  children: [
+                    Container(
+                      height: size.height / 4,
+                      width: size.width,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image:
+                                AssetImage('assets/images/Rectanglewavebg.png'),
+                            fit: BoxFit.fill),
+                      ),
+                    ),
+                    Positioned(
+                      top: 50,
+                      left: 50,
+                      right: 10,
+                      child: Row(
                         children: [
-                          const CircleAvatar(
-                            radius: 50,
-                            child: ClipOval(
-                                child: Image(
-                              image: NetworkImage(
-                                  'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000'),
-                              fit: BoxFit.cover,
-                            )),
-                          ),
-                          Positioned(
-                            right: -15,
-                            top: -5,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.camera,
-                                size: 20,
-                                color: colorwhite,
+                          Stack(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  log(state.imageurl);
+                                },
+                                child: CircleAvatar(
+                                  radius: 50,
+                                  child: SizedBox.fromSize(
+                                    size: size,
+                                    child: ClipOval(
+                                      child: state.imageurl == 'no-img'
+                                          ? Image.asset(
+                                              'assets/images/profiletemp.jpg')
+                                          : Image.network(
+                                              state.imageurl,
+                                              fit: BoxFit.cover,
+                                            ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              Positioned(
+                                right: -15,
+                                top: -5,
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.camera,
+                                    size: 20,
+                                    color: colorwhite,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      BlocBuilder<AccountinfoBloc, AccountinfoState>(
-                        builder: (context, state) {
-                          return Column(
+                          SizedBox(
+                            width: size.width * 0.05,
+                          ),
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -91,20 +105,39 @@ class AccountInfoScreen extends StatelessWidget {
                                     fontstyle(color: colorwhite, fontSize: 15),
                               ),
                             ],
-                          );
-                        },
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              ],
+                    ),
+                    Positioned(
+                        right: 10,
+                        top: 10,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProfileOverView(
+                                        name: state.name, phone: state.phone),
+                                  ));
+                            },
+                            icon: const Icon(
+                              FontAwesomeIcons.user,
+                              color: colorwhite,
+                            )))
+                  ],
+                );
+              },
             ),
             SizedBox(
               height: size.height * 0.05,
             ),
-            ProfileScreenContainer(
-              size: size,
-              title: 'Address',
+            InkWell(
+              onTap: () {},
+              child: ProfileScreenContainer(
+                size: size,
+                title: 'Address',
+              ),
             ),
             InkWell(
               onTap: () => Navigator.push(
