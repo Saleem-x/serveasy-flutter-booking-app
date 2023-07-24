@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -73,11 +74,38 @@ class SearvicesList extends StatelessWidget {
                                   ),
                                 ),
                                 width: size.width / 3,
-                                child: Center(
-                                    child: Text(
-                                  state.serviceslist![index].name,
-                                  style: fontstyle(fontSize: 17),
-                                )),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          state.serviceslist![index].name,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: fontstyle(
+                                              color: colorblack, fontSize: 17),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              '₹${state.serviceslist![index].price.toString()}',
+                                              style: fontstyle(
+                                                  color: colorblack,
+                                                  fontSize: 17),
+                                            ),
+                                            Container(
+                                              decoration: decoration3,
+                                              child: const Center(
+                                                  child: Icon(
+                                                      CupertinoIcons.forward)),
+                                            )
+                                          ],
+                                        ),
+                                      ]),
+                                ),
                               ),
                             )
                           ]),
