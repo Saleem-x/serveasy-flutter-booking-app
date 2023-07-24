@@ -53,7 +53,7 @@ pickprofileimage() async {
   if (imagePicked != null) {
     image = imagePicked.path;
   }
-  return image ?? 'img';
+  return image ?? 'no-img';
 }
 
 uploadprofileimage(String imagepath, bool isold) async {

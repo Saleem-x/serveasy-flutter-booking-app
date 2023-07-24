@@ -81,10 +81,13 @@ class _ProfileOverViewState extends State<ProfileOverView> {
                                       size: size,
                                       child: ClipOval(
                                         child: state.selectedimage != null
-                                            ? Image.file(
-                                                File(state.selectedimage!),
-                                                fit: BoxFit.cover,
-                                              )
+                                            ? state.selectedimage == 'no-img'
+                                                ? Image.asset(
+                                                    'assets/images/profiletemp.jpg')
+                                                : Image.file(
+                                                    File(state.selectedimage!),
+                                                    fit: BoxFit.cover,
+                                                  )
                                             : state.imageurl == 'no-img'
                                                 ? Image.asset(
                                                     'assets/images/profiletemp.jpg')

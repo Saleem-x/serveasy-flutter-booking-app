@@ -63,13 +63,6 @@ class ProductsScreen extends StatelessWidget {
                               flex: 1,
                               child: Container(
                                 decoration: decoration2,
-                                // height: size.height * 0.09,
-                                // decoration: const BoxDecoration(
-                                //     color: colorblue,
-                                //     borderRadius: BorderRadius.only(
-                                //         bottomLeft: Radius.circular(20),
-                                //         bottomRight: Radius.circular(20))),
-                                // width: size.width / 2,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(

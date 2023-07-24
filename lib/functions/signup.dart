@@ -76,6 +76,7 @@ signInWithGoogle(BuildContext context) async {
       idToken: googleAuth.idToken,
     );
     log('5');
+
     // ignore: use_build_context_synchronously
     context.read<LoginscreenBloc>().add(Loadingevent(isloading: true));
     // ignore: use_build_context_synchronously
@@ -89,6 +90,7 @@ signInWithGoogle(BuildContext context) async {
     // ignore: use_build_context_synchronously
     context.read<LoginscreenBloc>().add(Loadingevent(isloading: false));
     log(userCredential.user.toString());
+    uploaduserdetails(googleSignInAccount, userCredential.user!);
   }
 
 // // ignore: use_build_context_synchronously
@@ -103,4 +105,17 @@ signInWithGoogle(BuildContext context) async {
 //     log(e.toString());
 //     return null;
 //   }
+}
+
+uploaduserdetails(GoogleSignInAccount account, User user) async {
+  try {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    await firestore.collection('users').doc(user.uid).set({
+      'name': user.displayName,
+      'age': user.email,
+      'profileimage': user.photoURL,
+    });
+  } catch (e) {
+    log('Sign up error: $e');
+  }
 }
