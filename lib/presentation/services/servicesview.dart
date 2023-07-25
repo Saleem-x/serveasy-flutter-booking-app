@@ -10,6 +10,7 @@ import 'package:project2/functions/booking.dart';
 import 'package:project2/models/servicemodel.dart';
 import 'package:project2/models/servisebookingmodel.dart';
 import 'package:project2/presentation/services/booknow.dart';
+import 'package:project2/presentation/services/widgets/slotselectionwidget.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class ServiceView extends StatelessWidget {
@@ -22,10 +23,14 @@ class ServiceView extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       List<GetServicemodel> bookedlist =
           await getbookedservices(DateTime.now());
-      // ignore: use_build_context_synchronously
-      context.read<CalenderBloc>().add(GetBookedServicesEvent(bookedlist));
-      // ignore: use_build_context_synchronously
-      context.read<CalenderBloc>().add(SloteSelectingEvent(null));
+      List<int> bookedslots = await getavailableslots(DateTime.now());
+
+      Future.delayed(const Duration(milliseconds: 100), () {
+        context.read<CalenderBloc>().add(GetBookedServicesEvent(bookedlist));
+        context.read<CalenderBloc>().add((GetBookedSlotsEvent(bookedslots)));
+        context.read<CalenderBloc>().add(SloteSelectingEvent(null));
+      });
+
       // log(bookedlist.length.toString());
     });
     return SafeArea(
@@ -146,7 +151,7 @@ class ServiceView extends StatelessWidget {
                                                           state.selectedDay,
                                                           user.uid,
                                                           email!,
-                                                          '${state.slot! + 1}',
+                                                          '${state.slot!}',
                                                           email,
                                                           'requirments',
                                                           service,
@@ -259,15 +264,20 @@ class ServiceView extends StatelessWidget {
                                     log(selectedDay.day.toString());
                                     List<GetServicemodel> bookedlist =
                                         await getbookedservices(selectedDay);
-                                    // ignore: use_build_context_synchronously
-                                    context.read<CalenderBloc>().add(
-                                        GetBookedServicesEvent(bookedlist));
-                                    // ignore: use_build_context_synchronously
-                                    context
-                                        .read<CalenderBloc>()
-                                        .add(DaySelectingEvent(selectedDay));
+                                    List<int> bookedslots =
+                                        await getavailableslots(selectedDay);
+                                    Future.delayed(
+                                        const Duration(microseconds: 100), () {
+                                      context.read<CalenderBloc>().add(
+                                          GetBookedServicesEvent(bookedlist));
+                                      context
+                                          .read<CalenderBloc>()
+                                          .add(DaySelectingEvent(selectedDay));
+                                      context.read<CalenderBloc>().add(
+                                          (GetBookedSlotsEvent(bookedslots)));
+                                    });
 
-                                    log('${bookedlist.length.toString()}    gygfffd${state.selectedDay}');
+                                    log('${bookedlist.length.toString()}gygfffd${state.selectedDay}');
                                   },
                                 ),
                               ),
@@ -283,77 +293,14 @@ class ServiceView extends StatelessWidget {
                                             style: fontstyle(),
                                           ),
                                         )
-                                      : ListView.separated(
+                                      : SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
-                                          itemBuilder: (context, index) {
-                                            return GestureDetector(
-                                              onTap: () {
-                                                context
-                                                    .read<CalenderBloc>()
-                                                    .add(
-                                                      SloteSelectingEvent(
-                                                          index),
-                                                    );
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: state.slot == null
-                                                      ? colorgreyshade
-                                                      : state.slot! == index
-                                                          ? colorblue
-                                                          : colorgreyshade,
-                                                ),
-                                                // height: size.height * 0.03,
-                                                width: size.width / 3,
-                                                child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                              'slot ${index + 1}',
-                                                              style: fontstyle(
-                                                                  color:
-                                                                      colorwhite,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        '09:00 AM\n to\n 11.00 AM',
-                                                        style: fontstyle(
-                                                          color: colorwhite,
-                                                        ),
-                                                      )
-                                                    ]),
-                                              ),
-                                            );
-                                          },
-                                          separatorBuilder: (context, index) =>
-                                              SizedBox(
-                                                width: size.width * 0.03,
-                                              ),
-                                          itemCount: state
-                                                  .bookedservices!.isEmpty
-                                              ? 3
-                                              : 3 -
-                                                  state.bookedservices!.length),
+                                          child: SlotSelectionWidget(
+                                              size: size,
+                                              bookedslots: state.bookedslots,
+                                              selectedDay: state.selectedDay,
+                                              slot: state.slot),
+                                        ),
                                 ),
                               ),
                             ]),
@@ -389,3 +336,9 @@ Map<String, bool> slots = {
   '01:03': true,
   '04:06': false,
 };
+
+List<String> slotinfo = [
+  'slot 1: 10:12',
+  'slot 2: 01:03',
+  'slot 3: 04:06',
+];

@@ -26,6 +26,12 @@ final _booknowformkey = GlobalKey<FormState>();
 
 class _BookNowScreenState extends State<BookNowScreen> {
   @override
+  void initState() {
+    context.read<ServicebooknowBloc>().add(AddressSelectionEvent(null));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -257,7 +263,7 @@ class _BookNowScreenState extends State<BookNowScreen> {
                                                 separatorBuilder:
                                                     (BuildContext context,
                                                             int index) =>
-                                                        Divider(),
+                                                        const Divider(),
                                                 itemBuilder:
                                                     (BuildContext context,
                                                         int index) {
@@ -360,6 +366,10 @@ class _BookNowScreenState extends State<BookNowScreen> {
                                     context
                                         .read<ServicebooknowBloc>()
                                         .add(LoadingEvent(false));
+                                    // ignore: use_build_context_synchronously
+                                    context
+                                        .read<ServicebooknowBloc>()
+                                        .add(AddressSelectionEvent(null));
                                   } else if (state.address == null) {
                                     ScaffoldMessenger.of(context)
                                       ..removeCurrentSnackBar()

@@ -20,3 +20,9 @@ class GetBookedServicesEvent extends CalenderEvent {
 
   GetBookedServicesEvent(this.bookedserviceslist);
 }
+
+class GetBookedSlotsEvent extends CalenderEvent {
+  final List<int> bookedslots;
+
+  GetBookedSlotsEvent(this.bookedslots);
+}

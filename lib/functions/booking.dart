@@ -46,8 +46,6 @@ bookService(
                 )
               ],
             )));
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
     } catch (e) {
       log(e.toString());
     }
@@ -172,5 +170,17 @@ getbookedservices(DateTime date) async {
       data['id'],
     );
   }).toList();
+
   return servicesbooked;
+}
+
+getavailableslots(DateTime date) async {
+  List<GetServicemodel> servicesbooked = await getbookedservices(date);
+  List<int> bookedslots = [];
+  for (int i = 0; i < servicesbooked.length; i++) {
+    bookedslots.add(int.parse(servicesbooked[i].timeslot));
+    log(servicesbooked[i].timeslot);
+  }
+
+  return bookedslots;
 }

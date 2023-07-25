@@ -4,7 +4,7 @@ part of 'servicebooknow_bloc.dart';
 abstract class ServicebooknowEvent {}
 
 class AddressSelectionEvent extends ServicebooknowEvent {
-  final AddressModel address;
+  final AddressModel? address;
   AddressSelectionEvent(this.address);
 }
 
