@@ -12,8 +12,8 @@ addAddress(AddressModel address) async {
   final parentcollection = firestore.collection('Alluser-Address');
   final email = await getuser();
 
-  List<AddressModel> addresslist = await getAddressllist();
-  if (addresslist.length < 3) {
+  List<AddressModel>? addresslist = await getAddressllist();
+  if (addresslist == null || addresslist.length < 3) {
     final usercollection =
         parentcollection.doc(email).collection('Address-list');
     try {
@@ -42,6 +42,7 @@ getuser() async {
   User? user = FirebaseAuth.instance.currentUser;
 
   final email = user!.email;
+  log(email.toString());
   return email;
 }
 
@@ -52,14 +53,14 @@ getAddressllist() async {
 
   final usercollection =
       await parentcollection.doc(email).collection('Address-list').get();
-
+  List<AddressModel>? addresslist;
   try {
-    List<AddressModel> addresslist = usercollection.docs.map((doc) {
+    addresslist = usercollection.docs.map((doc) {
       Map<String, dynamic> data = doc.data();
       return AddressModel(data['address'], data['country'], data['state'],
           data['city'], data['zipcode']);
     }).toList();
-    log(addresslist[0].address);
+    // log(addresslist[0].address);
     return addresslist;
   } catch (e) {
     log(e.toString());

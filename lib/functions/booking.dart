@@ -7,8 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/models/servisebookingmodel.dart';
 
-bookService(
-    ServiceBookingModel service, BuildContext context, String username) async {
+bookService(ServiceBookingModel service, BuildContext context, String username,
+    String requirements) async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final parentcollection = firestore.collection('Service-Bookings');
   final email = await getuser();
@@ -23,7 +23,7 @@ bookService(
         'date': DateFormat('yyyy-MM-dd').format(service.date),
         'mobile': service.mobile,
         'timeslot': service.timeslote,
-        'requirements': service.requirments,
+        'requirements': requirements,
         'serviceid': service.service.id,
         'id': service.id
       });

@@ -12,7 +12,7 @@ class ServicebooknowBloc
       emit(ServicebooknowState(
           event.address, state.isLoading, state.addresslist));
     });
-    on<LoadingEvent>((event, emit) {
+    on<BoookNowLoadingEvent>((event, emit) {
       emit(ServicebooknowState(
           state.address, event.isLoading, state.addresslist));
     });

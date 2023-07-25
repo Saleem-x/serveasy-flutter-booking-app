@@ -8,10 +8,10 @@ class AddressSelectionEvent extends ServicebooknowEvent {
   AddressSelectionEvent(this.address);
 }
 
-class LoadingEvent extends ServicebooknowEvent {
+class BoookNowLoadingEvent extends ServicebooknowEvent {
   final bool isLoading;
 
-  LoadingEvent(this.isLoading);
+  BoookNowLoadingEvent(this.isLoading);
 }
 
 class GetAddressEvent extends ServicebooknowEvent {

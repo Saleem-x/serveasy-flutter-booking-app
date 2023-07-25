@@ -224,7 +224,7 @@ class AddressTextField extends StatelessWidget {
       validator: (value) {
         if (value == null || value.isEmpty) {
           return '$label is Required';
-        } else if (label == 'Zip code' && value.length < 6) {
+        } else if (label == 'Zip code' && value.length != 6) {
           return 'enter a valid zip code';
         }
         return null;
