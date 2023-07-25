@@ -44,39 +44,40 @@ class SearvicesList extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Column(children: [
-                            Flexible(
-                              flex: 2,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: colorgreyshade,
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      topRight: Radius.circular(20),
-                                    ),
-                                    image: DecorationImage(
-                                        image: NetworkImage(state
-                                            .serviceslist![index].imageUrl),
-                                        fit: BoxFit.cover)),
-                                width: size.width / 3,
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: Container(
-                                height: size.height * 0.09,
-                                decoration: BoxDecoration(
-                                  color: colorwhite,
-                                  boxShadow: [insetboxshadow],
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    bottomRight: Radius.circular(20),
-                                  ),
+                          child: Column(
+                            children: [
+                              Flexible(
+                                flex: 2,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: colorgreyshade,
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
+                                      ),
+                                      image: DecorationImage(
+                                          image: NetworkImage(state
+                                              .serviceslist![index].imageUrl),
+                                          fit: BoxFit.cover)),
+                                  width: size.width / 3,
                                 ),
-                                width: size.width / 3,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: Container(
+                                  height: size.height * 0.09,
+                                  decoration: BoxDecoration(
+                                    color: colorwhite,
+                                    boxShadow: [insetboxshadow],
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20),
+                                    ),
+                                  ),
+                                  width: size.width / 3,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
@@ -96,19 +97,31 @@ class SearvicesList extends StatelessWidget {
                                                   color: colorblack,
                                                   fontSize: 17),
                                             ),
-                                            Container(
-                                              decoration: decoration3,
+                                            // Container(
+                                            //   decoration: decoration3,
+                                            //   child: const Center(
+                                            //       child: Icon(
+                                            //           CupertinoIcons.forward)),
+                                            // )
+                                            Card(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
                                               child: const Center(
-                                                  child: Icon(
-                                                      CupertinoIcons.forward)),
+                                                child: Icon(
+                                                    CupertinoIcons.forward),
+                                              ),
                                             )
                                           ],
                                         ),
-                                      ]),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            )
-                          ]),
+                              )
+                            ],
+                          ),
                         ),
                       );
                     },

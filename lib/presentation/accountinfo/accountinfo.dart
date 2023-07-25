@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
+import 'package:project2/bloc/address/address_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/accountinfo.dart';
 import 'package:project2/presentation/accountinfo/profileoverview.dart';
@@ -135,10 +136,16 @@ class AccountInfoScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
+                context.read<AddressBloc>().add(CitySelectingEvent('City'));
+                context
+                    .read<AddressBloc>()
+                    .add(CountrySelectingEvent('Country'));
+                context.read<AddressBloc>().add(StateSelectingEvent('State'));
+                context.read<AddressBloc>().add(LoadingEvent(false));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const AddressScreen(),
+                      builder: (context) => AddressScreen(),
                     ));
               },
               child: ProfileScreenContainer(

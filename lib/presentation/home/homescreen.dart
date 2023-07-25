@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: SizedBox(
-                      height: size.height * 0.25,
+                      height: size.height * 0.28,
                       child: const SearvicesList(),
                     ),
                   ),
@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: SizedBox(
-                      height: size.height * 0.25,
+                      height: size.height * 0.28,
                       child: const ProductWidget(),
                     ),
                   ),

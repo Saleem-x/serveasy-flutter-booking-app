@@ -82,3 +82,23 @@ final decoration3 = BoxDecoration(
     ),
   ],
 );
+
+Widget snackbarwidget(String title, Color color) {
+  return SnackBar(
+      backgroundColor: color,
+      content: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: colorwhite,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            title,
+            style: fontstyle(),
+          )
+        ],
+      ));
+}

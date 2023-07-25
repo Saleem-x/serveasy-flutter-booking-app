@@ -70,6 +70,8 @@ class ProductsScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               state.productlist![index].name,
@@ -77,6 +79,29 @@ class ProductsScreen extends StatelessWidget {
                                                   color: colorblack,
                                                   fontSize: 17),
                                             ),
+                                            // Text(
+                                            //   state.productlist![index].stock >
+                                            //           0
+                                            //       ? 'in stock'
+                                            //       : 'out of stock',
+                                            //   style: fontstyle(
+                                            //       color: colorblack,
+                                            //       fontSize: 17),
+                                            // ),
+                                            Container(
+                                              height: 10,
+                                              width: 10,
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      state.productlist![index]
+                                                                  .stock >
+                                                              0
+                                                          ? Colors.green
+                                                          : Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                            )
                                           ],
                                         ),
                                         Row(
@@ -89,8 +114,11 @@ class ProductsScreen extends StatelessWidget {
                                                   color: colorblack,
                                                   fontSize: 17),
                                             ),
-                                            Container(
-                                              decoration: decoration3,
+                                            Card(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
                                               child: const Center(
                                                   child: Icon(
                                                       CupertinoIcons.forward)),

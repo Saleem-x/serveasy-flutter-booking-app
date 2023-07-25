@@ -1,17 +1,24 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:project2/models/addressmodel.dart';
 
 part 'servicebooknow_event.dart';
 part 'servicebooknow_state.dart';
 
 class ServicebooknowBloc
     extends Bloc<ServicebooknowEvent, ServicebooknowState> {
-  ServicebooknowBloc() : super(ServicebooknowInitial('Select Address', false)) {
+  ServicebooknowBloc() : super(ServicebooknowInitial(null, false, null)) {
     on<AddressSelectionEvent>((event, emit) {
-      emit(ServicebooknowState(event.address, state.isLoading));
+      emit(ServicebooknowState(
+          event.address, state.isLoading, state.addresslist));
     });
     on<LoadingEvent>((event, emit) {
-      emit(ServicebooknowState(state.address, event.isLoading));
+      emit(ServicebooknowState(
+          state.address, event.isLoading, state.addresslist));
+    });
+    on<GetAddressEvent>((event, emit) {
+      emit(ServicebooknowState(
+          state.address, state.isLoading, event.addresslist));
     });
   }
 }

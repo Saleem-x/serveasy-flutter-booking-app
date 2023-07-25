@@ -1,11 +1,12 @@
 part of 'servicebooknow_bloc.dart';
 
 class ServicebooknowState {
-  final String address;
+  final AddressModel? address;
   final bool isLoading;
-  ServicebooknowState(this.address, this.isLoading);
+  final List<AddressModel>? addresslist;
+  ServicebooknowState(this.address, this.isLoading, this.addresslist);
 }
 
 class ServicebooknowInitial extends ServicebooknowState {
-  ServicebooknowInitial(super.address, super.isLoading);
+  ServicebooknowInitial(super.address, super.isLoading, super.addresslist);
 }

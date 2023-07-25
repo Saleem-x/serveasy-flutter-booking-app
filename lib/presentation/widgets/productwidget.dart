@@ -96,8 +96,11 @@ class ProductWidget extends StatelessWidget {
                                                 color: colorblack,
                                                 fontSize: 17),
                                           ),
-                                          Container(
-                                            decoration: decoration3,
+                                          Card(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
                                             child: const Center(
                                                 child: Icon(
                                                     CupertinoIcons.forward)),
