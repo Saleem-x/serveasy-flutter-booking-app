@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:project2/bloc/address/address_bloc.dart';
 import 'package:project2/bloc/buynow/buynowselection_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
+import 'package:project2/functions/address.dart';
 import 'package:project2/functions/buynow.dart';
+import 'package:project2/models/addressmodel.dart';
 import 'package:project2/models/productmodel.dart';
+import 'package:project2/presentation/address/addreassscreen.dart';
 
 class BuyNowScreen extends StatelessWidget {
   final ProductModel product;
@@ -16,19 +20,25 @@ class BuyNowScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<BuynowselectionBloc>().add(
-            ItemCountIncriment(0),
-          );
-      context.read<BuynowselectionBloc>().add(
-            AddressSelectionEvent('select Adress'),
-          );
-      context.read<BuynowselectionBloc>().add(
-            PaymentselctionEvent('Select PAyment Method'),
-          );
-      context.read<BuynowselectionBloc>().add(
-            LoadingEvent(false),
-          );
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      List<AddressModel> addresslist = await getAddressllist() ?? [];
+      Future.delayed(const Duration(microseconds: 100), () {
+        context.read<BuynowselectionBloc>().add(
+              GetAddressEvent(addresslist),
+            );
+        context.read<BuynowselectionBloc>().add(
+              ItemCountIncriment(0),
+            );
+        // context.read<BuynowselectionBloc>().add(
+        //       AddressSelectionEvent(null),
+        //     );
+        context.read<BuynowselectionBloc>().add(
+              PaymentselctionEvent('Select PAyment Method'),
+            );
+        context.read<BuynowselectionBloc>().add(
+              BuyNowLoadingEvent(false),
+            );
+      });
     });
     final size = MediaQuery.of(context).size;
     // String selectedaddress = 'select Adress';
@@ -218,48 +228,100 @@ class BuyNowScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 10),
-                                  child: Container(
-                                    height: size.height * 0.05,
-                                    width: size.width,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: colorblue),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              state.address,
-                                              style:
-                                                  fontstyle(color: colorblue),
-                                            ),
-                                            DropdownButton(
-                                                underline: const SizedBox(),
-                                                items: addresslist.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (value) {
-                                                  log(value!);
-                                                  // selectedaddress = value;
-                                                  // log(selectedaddress);
-                                                  context
-                                                      .read<
-                                                          BuynowselectionBloc>()
-                                                      .add(
-                                                          AddressSelectionEvent(
-                                                              value));
-                                                })
-                                          ]),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (state.addresslist == null ||
+                                          state.addresslist!.isEmpty) {
+                                        context
+                                            .read<AddressBloc>()
+                                            .add(CitySelectingEvent('City'));
+                                        context.read<AddressBloc>().add(
+                                            CountrySelectingEvent('Country'));
+                                        context
+                                            .read<AddressBloc>()
+                                            .add(StateSelectingEvent('State'));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AddressScreen(),
+                                            ));
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                'address list',
+                                                style: fontstyle(),
+                                              ),
+                                              content: Card(
+                                                child: SizedBox(
+                                                  width: double.maxFinite,
+                                                  child: ListView.separated(
+                                                    shrinkWrap: true,
+                                                    itemCount: state
+                                                        .addresslist!.length,
+                                                    separatorBuilder:
+                                                        (BuildContext context,
+                                                                int index) =>
+                                                            const Divider(),
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return ListTile(
+                                                        title: Text(state
+                                                            .addresslist![index]
+                                                            .address),
+                                                        onTap: () {
+                                                          context
+                                                              .read<
+                                                                  BuynowselectionBloc>()
+                                                              .add(AddressSelectionEvent(
+                                                                  state.addresslist![
+                                                                      index]));
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+                                    },
+                                    child: Card(
+                                      // height: size.height * 0.05,
+                                      // width: size.width,
+                                      // decoration: BoxDecoration(
+                                      //   border: Border.all(color: colorblue),
+                                      //   borderRadius: BorderRadius.circular(10),
+                                      // ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Flexible(
+                                                flex: 1,
+                                                child: Text(
+                                                  state.address == null
+                                                      ? 'Select Address'
+                                                      : '${state.address!.address}/${state.address!.city}/${state.address!.state}/${state.address!.country}',
+                                                  style: fontstyle(
+                                                      color: colorblue,
+                                                      fontSize: 17),
+                                                ),
+                                              ),
+                                              const Icon(
+                                                Icons.arrow_drop_down,
+                                              )
+                                            ]),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -478,11 +540,11 @@ class BuyNowScreen extends StatelessWidget {
                             } else {
                               context
                                   .read<BuynowselectionBloc>()
-                                  .add(LoadingEvent(true));
+                                  .add(BuyNowLoadingEvent(true));
                               buyNowOrderplacing(
                                   product,
                                   state.count,
-                                  state.address,
+                                  '${state.address!.address}/${state.address!.city}/${state.address!.state}/${state.address!.country}',
                                   state.paymentmethod,
                                   product.price * state.count +
                                       (12 / 100) * product.price,
@@ -491,7 +553,7 @@ class BuyNowScreen extends StatelessWidget {
                               // ignore: use_build_context_synchronously
                               context
                                   .read<BuynowselectionBloc>()
-                                  .add(LoadingEvent(false));
+                                  .add(BuyNowLoadingEvent(false));
                             }
                           },
                           child: Text(

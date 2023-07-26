@@ -1,14 +1,15 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/models/addressmodel.dart';
+import 'package:project2/models/servicemodel.dart';
 import 'package:project2/models/servisebookingmodel.dart';
 
 bookService(ServiceBookingModel service, BuildContext context, String username,
-    String requirements) async {
+    String requirements, AddressModel address) async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final parentcollection = firestore.collection('Service-Bookings');
   final email = await getuser();
@@ -24,11 +25,15 @@ bookService(ServiceBookingModel service, BuildContext context, String username,
         'mobile': service.mobile,
         'timeslot': service.timeslote,
         'requirements': requirements,
+        'address':
+            '${address.address}/${address.city}/${address.state}/${address.country}',
         'serviceid': service.service.id,
-        'id': service.id
+        'id': service.id,
+        'status': 'booked'
       });
       // ignore: use_build_context_synchronously
-      addtobookingtoglobal(service, username, context);
+      addtobookingtoglobal(service, username, context,
+          '${address.address}/${address.city}/${address.state}/${address.country}');
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context)
         ..removeCurrentSnackBar()
@@ -102,8 +107,8 @@ getuser() async {
   return email;
 }
 
-addtobookingtoglobal(
-    ServiceBookingModel service, String username, BuildContext context) async {
+addtobookingtoglobal(ServiceBookingModel service, String username,
+    BuildContext context, String address) async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final collectionref = firestore.collection('All-Booking');
 
@@ -122,7 +127,9 @@ addtobookingtoglobal(
         'timeslot': service.timeslote,
         'requirements': service.requirments,
         'serviceid': service.service.id,
-        'id': service.id
+        'address': address,
+        'id': service.id,
+        'status': 'booked'
       });
     } catch (e) {
       log(e.toString());
@@ -156,9 +163,16 @@ getbookedservices(DateTime date) async {
       .doc(DateFormat('yyyy-MM-dd').format(date))
       .collection('booking');
 
+  List<ServiceModel> serviceslist = await getservices();
   final snapshot = await bookindate.get();
   List<GetServicemodel> servicesbooked = snapshot.docs.map((doc) {
+    ServiceModel? service;
     Map<String, dynamic> data = doc.data() /* as Map<String, dynamic> */;
+    for (ServiceModel item in serviceslist) {
+      if (item.id == data['serviceid']) {
+        service = item;
+      }
+    }
     return GetServicemodel(
       data['organiser'],
       data['userid'],
@@ -166,8 +180,10 @@ getbookedservices(DateTime date) async {
       data['mobile'],
       data['timeslot'],
       data['requirements'],
-      data['serviceid'],
+      service!,
       data['id'],
+      data['address'],
+      data['status'],
     );
   }).toList();
 
@@ -183,4 +199,61 @@ getavailableslots(DateTime date) async {
   }
 
   return bookedslots;
+}
+
+getuserbookedservices() async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final email = await getuser();
+
+  try {
+    ServiceModel? service;
+    List<ServiceModel> serviceslist = await getservices();
+
+    final querySnapshot = await firestore
+        .collection('Service-Bookings')
+        .doc(email)
+        .collection('Booked')
+        .get();
+
+    List<GetServicemodel> servicebooked = querySnapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data();
+
+      for (ServiceModel item in serviceslist) {
+        if (item.id == data['serviceid']) {
+          service = item;
+        }
+      }
+      return GetServicemodel(
+          data['organiser'],
+          data['userid'],
+          data['date'],
+          data['mobile'],
+          data['timeslot'],
+          data['requirements'],
+          service!,
+          data['id'],
+          data['address'],
+          data['status']);
+    }).toList();
+    // log(servicebooked[0].serviceid);
+    return servicebooked;
+  } catch (e) {
+    log('error ${e.toString()}');
+  }
+}
+
+getservices() async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  QuerySnapshot querySnapshot = await firestore.collection('Services').get();
+
+  List<ServiceModel> services = querySnapshot.docs.map((doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    double price = data['price'].toDouble();
+    return ServiceModel(data['id'],
+        name: data['name'],
+        price: price,
+        description: data['description'],
+        imageUrl: data['imageUrl']);
+  }).toList();
+  return services;
 }

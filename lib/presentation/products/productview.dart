@@ -105,13 +105,40 @@ class ProductView extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
-                                  Navigator.push(
+                                  if (product.stock == 0) {
+                                    ScaffoldMessenger.of(context)
+                                      ..removeCurrentSnackBar()
+                                      ..showSnackBar(
+                                        SnackBar(
+                                          backgroundColor: Colors.red,
+                                          content: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.info,
+                                                color: colorwhite,
+                                              ),
+                                              SizedBox(
+                                                width: size.width * 0.03,
+                                              ),
+                                              Text(
+                                                'item is currently out of stock',
+                                                style: fontstyle(
+                                                    color: colorwhite),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                  } else {
+                                    Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => BuyNowScreen(
                                           product: product,
                                         ),
-                                      ));
+                                      ),
+                                    );
+                                  }
                                 },
                                 child: Text(
                                   'Buy Now',

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/bloc/address/address_bloc.dart';
+import 'package:project2/bloc/bookinglist/bookinglist_bloc.dart';
 import 'package:project2/bloc/bottomnavbar/bottomnavbar_bloc.dart';
 import 'package:project2/bloc/buynow/buynowselection_bloc.dart';
 import 'package:project2/bloc/calender/calender_bloc.dart';
@@ -84,6 +85,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AddressBloc>(
           create: (context) => AddressBloc(),
+        ),
+        BlocProvider<BookinglistBloc>(
+          create: (context) => BookinglistBloc(),
         ),
       ],
       child: MaterialApp(

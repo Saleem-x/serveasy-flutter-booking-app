@@ -4,7 +4,7 @@ part of 'buynowselection_bloc.dart';
 abstract class BuynowselectionEvent {}
 
 class AddressSelectionEvent extends BuynowselectionEvent {
-  final String address;
+  final AddressModel address;
   AddressSelectionEvent(this.address);
 }
 
@@ -25,8 +25,14 @@ class ItemCountDecriment extends BuynowselectionEvent {
   ItemCountDecriment(this.count);
 }
 
-class LoadingEvent extends BuynowselectionEvent {
+class GetAddressEvent extends BuynowselectionEvent {
+  final List<AddressModel> addresslist;
+
+  GetAddressEvent(this.addresslist);
+}
+
+class BuyNowLoadingEvent extends BuynowselectionEvent {
   final bool isLoading;
 
-  LoadingEvent(this.isLoading);
+  BuyNowLoadingEvent(this.isLoading);
 }

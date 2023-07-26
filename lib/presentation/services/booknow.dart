@@ -383,7 +383,8 @@ class _BookNowScreenState extends State<BookNowScreen> {
                                     widget.servicetobook,
                                     context,
                                     _namecontroller.text,
-                                    _requircontroller.text);
+                                    _requircontroller.text,
+                                    state.address!);
 
                                 _namecontroller.clear();
                                 _phonecontroller.clear();

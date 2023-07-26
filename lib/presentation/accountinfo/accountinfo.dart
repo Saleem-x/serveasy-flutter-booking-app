@@ -9,6 +9,7 @@ import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/accountinfo.dart';
 import 'package:project2/presentation/accountinfo/profileoverview.dart';
 import 'package:project2/presentation/address/addreassscreen.dart';
+import 'package:project2/presentation/bookings/bookinglisting.dart';
 import 'package:project2/presentation/cart/cartscreen.dart';
 import 'package:project2/presentation/orders/orderslist.dart';
 import 'package:project2/presentation/splashscreen/splashscreen.dart';
@@ -161,7 +162,18 @@ class AccountInfoScreen extends StatelessWidget {
                   )),
               child: ProfileScreenContainer(
                 size: size,
-                title: 'Bookings',
+                title: 'orders',
+              ),
+            ),
+            InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BookingListingScreen(),
+                  )),
+              child: ProfileScreenContainer(
+                size: size,
+                title: 'bookings',
               ),
             ),
             InkWell(

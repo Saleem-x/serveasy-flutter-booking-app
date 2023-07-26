@@ -32,13 +32,15 @@ class ServicesWidget extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Container(
+                        child: Card(
                           // height: size.height / 2,
                           // decoration: BoxDecoration(
                           //   color: colorblue,
                           //   borderRadius: BorderRadius.circular(10),
                           // ),
-                          decoration: decoration1,
+                          // decoration: decoration1,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             children: [
                               Padding(
@@ -47,13 +49,17 @@ class ServicesWidget extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      height: size.height * 0.05,
+                                    Card(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                      // height: size.height * 0.05,
                                       // width: size.width * 0.3,
-                                      decoration: BoxDecoration(
-                                        color: colorblue.shade300,
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
+                                      // decoration: BoxDecoration(
+                                      //   color: colorblue.shade300,
+                                      //   borderRadius: BorderRadius.circular(30),
+                                      // ),
+                                      color: colorblue.shade300,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(

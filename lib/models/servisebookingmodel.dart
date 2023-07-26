@@ -1,3 +1,4 @@
+import 'package:project2/models/addressmodel.dart';
 import 'package:project2/models/servicemodel.dart';
 
 class ServiceBookingModel {
@@ -8,6 +9,7 @@ class ServiceBookingModel {
   final String username;
   final String requirments;
   final ServiceModel service;
+  final AddressModel? address;
   final int id;
 
   ServiceBookingModel(
@@ -19,19 +21,31 @@ class ServiceBookingModel {
     this.requirments,
     this.service,
     this.id,
+    this.address,
   );
 }
 
 class GetServicemodel {
+  final String address;
   final String organiser;
   final String userid;
   final String date;
   final String mobile;
   final String timeslot;
   final String requirements;
-  final String serviceid;
+  final ServiceModel service;
   final int id;
+  final String status;
 
-  GetServicemodel(this.organiser, this.userid, this.date, this.mobile,
-      this.timeslot, this.requirements, this.serviceid, this.id);
+  GetServicemodel(
+      this.organiser,
+      this.userid,
+      this.date,
+      this.mobile,
+      this.timeslot,
+      this.requirements,
+      this.service,
+      this.id,
+      this.address,
+      this.status);
 }
