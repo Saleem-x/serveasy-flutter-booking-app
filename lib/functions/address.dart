@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project2/models/addressmodel.dart';
+import 'package:project2/domain/models/addressmodel.dart';
 
 // AddressModel(address, country, state, city, zipcode)
 

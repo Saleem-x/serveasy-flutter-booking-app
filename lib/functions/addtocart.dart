@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/cart/cart_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/getproducts.dart';
-import 'package:project2/models/cartitemmodel.dart';
-import 'package:project2/models/productmodel.dart';
+import 'package:project2/domain/models/cartitemmodel.dart';
+import 'package:project2/domain/models/productmodel.dart';
 import 'dart:developer';
 
 addtocart(ProductModel product, int itemcount, BuildContext context) async {
@@ -48,7 +48,6 @@ addtocart(ProductModel product, int itemcount, BuildContext context) async {
 
 findduplicate(BuildContext context, ProductModel product) async {
   List<CartItemmodel> cartitems = await getcartitems(context);
-  log(cartitems[0].product.name.toString());
 
   for (int i = 0; i < cartitems.length; i++) {
     if (product.id == cartitems[i].product.id) {

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/addtocart.dart';
-import 'package:project2/models/productmodel.dart';
+import 'package:project2/domain/models/productmodel.dart';
 import 'package:project2/presentation/products/buynowscreen.dart';
 
 class ProductView extends StatelessWidget {
@@ -163,7 +163,7 @@ class ProductView extends StatelessWidget {
                                     ScaffoldMessenger.of(context)
                                       ..removeCurrentSnackBar()
                                       ..showSnackBar(const SnackBar(
-                                          backgroundColor: Colors.green,
+                                          backgroundColor: Colors.red,
                                           content: Row(
                                             children: [
                                               Icon(

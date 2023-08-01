@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:project2/models/productordermodel.dart';
+import 'package:project2/domain/models/productordermodel.dart';
 
 part 'orderlist_event.dart';
 part 'orderlist_state.dart';

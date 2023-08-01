@@ -6,7 +6,7 @@ import 'package:project2/constents/widgets.dart';
 import 'package:project2/presentation/widgets/customerfeedbackwidget.dart';
 import 'package:project2/presentation/widgets/productwidget.dart';
 import 'package:project2/presentation/widgets/serviceswidget.dart';
-import 'package:project2/search/searchscreen.dart';
+import 'package:project2/presentation/search/searchscreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

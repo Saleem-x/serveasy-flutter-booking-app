@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:project2/functions/booking.dart';
-import 'package:project2/models/servisebookingmodel.dart';
+import 'package:project2/domain/models/servisebookingmodel.dart';
 
 part 'bookinglist_event.dart';
 part 'bookinglist_state.dart';

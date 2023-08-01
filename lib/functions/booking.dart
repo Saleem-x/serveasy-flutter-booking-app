@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/models/addressmodel.dart';
-import 'package:project2/models/servicemodel.dart';
-import 'package:project2/models/servisebookingmodel.dart';
+import 'package:project2/domain/models/addressmodel.dart';
+import 'package:project2/domain/models/servicemodel.dart';
+import 'package:project2/domain/models/servisebookingmodel.dart';
 
 bookService(ServiceBookingModel service, BuildContext context, String username,
     String requirements, AddressModel address) async {
@@ -32,8 +32,12 @@ bookService(ServiceBookingModel service, BuildContext context, String username,
         'status': 'booked'
       });
       // ignore: use_build_context_synchronously
-      addtobookingtoglobal(service, username, context,
-          '${address.address}/${address.city}/${address.state}/${address.country}');
+      addtobookingtoglobal(
+          service,
+          username,
+          context,
+          '${address.address}/${address.city}/${address.state}/${address.country}',
+          requirements);
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context)
         ..removeCurrentSnackBar()
@@ -108,7 +112,7 @@ getuser() async {
 }
 
 addtobookingtoglobal(ServiceBookingModel service, String username,
-    BuildContext context, String address) async {
+    BuildContext context, String address, String requirements) async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final collectionref = firestore.collection('All-Booking');
 
@@ -125,7 +129,7 @@ addtobookingtoglobal(ServiceBookingModel service, String username,
         'date': DateFormat('yyyy-MM-dd').format(service.date),
         'mobile': service.mobile,
         'timeslot': service.timeslote,
-        'requirements': service.requirments,
+        'requirements': requirements,
         'serviceid': service.service.id,
         'address': address,
         'id': service.id,

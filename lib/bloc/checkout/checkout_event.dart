@@ -4,7 +4,7 @@ part of 'checkout_bloc.dart';
 abstract class CheckoutEvent {}
 
 class AddressSelectionEvent extends CheckoutEvent {
-  final String address;
+  final AddressModel address;
   AddressSelectionEvent(this.address);
 }
 
@@ -17,4 +17,8 @@ class LoadingEvent extends CheckoutEvent {
   final bool isLoading;
 
   LoadingEvent(this.isLoading);
+}
+
+class GetAddressEvent extends CheckoutEvent {
+  GetAddressEvent();
 }

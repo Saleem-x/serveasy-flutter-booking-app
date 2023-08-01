@@ -24,9 +24,7 @@ class AccountInfoScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       fetchUserData(context);
-      // context
-      //     .read<AccountinfoBloc>()
-      //     .add(GetUserDetailsEvent('Username', 'Phone', 'no-img'));
+     
     });
 
     return SafeArea(

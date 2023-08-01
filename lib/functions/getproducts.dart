@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/product/products_bloc.dart';
-import 'package:project2/models/productmodel.dart';
+import 'package:project2/domain/models/productmodel.dart';
 
 getAllProducts(BuildContext context) async {
   log('gettting');

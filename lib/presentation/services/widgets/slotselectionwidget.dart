@@ -30,7 +30,7 @@ class SlotSelectionWidget extends StatelessWidget {
                         SloteSelectingEvent(1),
                       );
                   List<int> bookedslots = await getavailableslots(selectedDay);
-                  Future.delayed(const Duration(microseconds: 100), () {
+                  Future.delayed(const Duration(microseconds: 1), () {
                     context
                         .read<CalenderBloc>()
                         .add((GetBookedSlotsEvent(bookedslots)));

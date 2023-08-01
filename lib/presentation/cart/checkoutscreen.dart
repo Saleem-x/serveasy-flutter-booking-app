@@ -7,7 +7,8 @@ import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/checkout/checkout_bloc.dart';
 import 'package:project2/constents/ecorations.dart';
 import 'package:project2/functions/addtocart.dart';
-import 'package:project2/models/cartitemmodel.dart';
+import 'package:project2/domain/models/cartitemmodel.dart';
+import 'package:project2/presentation/address/addreassscreen.dart';
 
 import '../../constents/colors.dart';
 
@@ -22,7 +23,7 @@ class CartCheckoutScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<CheckoutBloc>().add(LoadingEvent(false));
-      context.read<CheckoutBloc>().add(AddressSelectionEvent('Select Address'));
+      context.read<CheckoutBloc>().add(GetAddressEvent());
       context
           .read<CheckoutBloc>()
           .add(PaymentselctionEvent('Select payment method'));
@@ -173,47 +174,91 @@ class CartCheckoutScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 10),
-                                  child: Container(
-                                    height: size.height * 0.05,
-                                    width: size.width,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: colorblue),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              state.address,
-                                              style:
-                                                  fontstyle(color: colorblue),
-                                            ),
-                                            DropdownButton(
-                                                underline: const SizedBox(),
-                                                items: addresslist.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (value) {
-                                                  log(value!);
-                                                  // selectedaddress = value;
-                                                  // log(selectedaddress);
-                                                  context
-                                                      .read<CheckoutBloc>()
-                                                      .add(
-                                                          AddressSelectionEvent(
-                                                              value));
-                                                })
-                                          ]),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (state.addresslist.isEmpty) {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AddressScreen(),
+                                            ));
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                'address list',
+                                                style: fontstyle(),
+                                              ),
+                                              content: Card(
+                                                child: SizedBox(
+                                                  width: double.maxFinite,
+                                                  child: ListView.separated(
+                                                    shrinkWrap: true,
+                                                    itemCount: state
+                                                        .addresslist.length,
+                                                    separatorBuilder:
+                                                        (BuildContext context,
+                                                                int index) =>
+                                                            const Divider(),
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return ListTile(
+                                                        title: Text(state
+                                                            .addresslist[index]
+                                                            .address),
+                                                        onTap: () {
+                                                          context
+                                                              .read<
+                                                                  CheckoutBloc>()
+                                                              .add(AddressSelectionEvent(
+                                                                  state.addresslist[
+                                                                      index]));
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+                                    },
+                                    child: Card(
+                                      // height: size.height * 0.05,
+                                      // width: size.width,
+                                      // decoration: BoxDecoration(
+                                      //   border: Border.all(color: colorblue),
+                                      //   borderRadius: BorderRadius.circular(10),
+                                      // ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Flexible(
+                                                flex: 1,
+                                                child: Text(
+                                                  state.address == null
+                                                      ? 'Select Address'
+                                                      : '${state.address!.address}/${state.address!.city}/${state.address!.state}/${state.address!.country}',
+                                                  style: fontstyle(
+                                                      color: colorblue,
+                                                      fontSize: 17),
+                                                ),
+                                              ),
+                                              const Icon(
+                                                Icons.arrow_drop_down,
+                                              )
+                                            ]),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -337,7 +382,7 @@ class CartCheckoutScreen extends StatelessWidget {
                                     Text(
                                       state.paymentmethod ==
                                               'Select payment method'
-                                          ? ' '
+                                          ? 'not selected '
                                           : state.paymentmethod,
                                       style: fontstyle(
                                           fontSize: 17,
@@ -364,7 +409,7 @@ class CartCheckoutScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () async {
-                          if (state.address == 'Select Address') {
+                          if (state.address == null) {
                             ScaffoldMessenger.of(context)
                               ..removeCurrentSnackBar()
                               ..showSnackBar(

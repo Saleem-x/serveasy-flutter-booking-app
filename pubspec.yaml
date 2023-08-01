@@ -32,6 +32,7 @@ dependencies:
   cloud_firestore: ^4.8.2
   csc_picker: ^0.2.7
   cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
   email_validator: ^2.1.17
   firebase_app_check: ^0.1.5+1
   firebase_auth: ^4.6.3
@@ -47,6 +48,7 @@ dependencies:
   google_fonts: ^5.1.0
   google_sign_in: ^6.1.4
   image_picker: ^1.0.1
+  injectable: ^2.1.2
   intl: ^0.18.1
   lottie: ^2.4.0
   meta: ^1.9.1

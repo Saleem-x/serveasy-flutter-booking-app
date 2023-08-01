@@ -9,8 +9,8 @@ import 'package:project2/bloc/servicebooknow/servicebooknow_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/address.dart';
 import 'package:project2/functions/booking.dart';
-import 'package:project2/models/addressmodel.dart';
-import 'package:project2/models/servisebookingmodel.dart';
+import 'package:project2/domain/models/addressmodel.dart';
+import 'package:project2/domain/models/servisebookingmodel.dart';
 import 'package:project2/presentation/address/addreassscreen.dart';
 
 class BookNowScreen extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:project2/models/addressmodel.dart';
-import 'package:project2/models/servicemodel.dart';
+import 'package:project2/domain/models/addressmodel.dart';
+import 'package:project2/domain/models/servicemodel.dart';
 
 class ServiceBookingModel {
   final DateTime date;

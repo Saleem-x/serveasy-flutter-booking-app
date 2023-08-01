@@ -10,8 +10,8 @@ import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
 import 'package:project2/functions/address.dart';
 import 'package:project2/functions/buynow.dart';
-import 'package:project2/models/addressmodel.dart';
-import 'package:project2/models/productmodel.dart';
+import 'package:project2/domain/models/addressmodel.dart';
+import 'package:project2/domain/models/productmodel.dart';
 import 'package:project2/presentation/address/addreassscreen.dart';
 
 class BuyNowScreen extends StatelessWidget {

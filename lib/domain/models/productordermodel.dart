@@ -1,4 +1,4 @@
-import 'package:project2/models/productmodel.dart';
+import 'package:project2/domain/models/productmodel.dart';
 
 class ProductOrdermodel {
   final ProductModel product;

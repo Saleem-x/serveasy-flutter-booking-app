@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:project2/models/servisebookingmodel.dart';
+import 'package:project2/domain/models/servisebookingmodel.dart';
 
 part 'calender_event.dart';
 part 'calender_state.dart';
