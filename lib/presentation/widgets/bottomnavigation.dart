@@ -73,11 +73,11 @@ class BottomNavBarWidget extends StatelessWidget {
                 },
                 controller: controller,
                 physics: const NeverScrollableScrollPhysics(),
-                children: const [
-                  HomeScreen(),
+                children: [
+                  const HomeScreen(),
                   SupportScreen(),
-                  ServicesScreen(),
-                  AccountInfoScreen(),
+                  const ServicesScreen(),
+                  const AccountInfoScreen(),
                 ],
               );
             },

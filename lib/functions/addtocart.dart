@@ -6,7 +6,7 @@ import 'package:project2/bloc/cart/cart_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/getproducts.dart';
 import 'package:project2/domain/models/cartitemmodel.dart';
-import 'package:project2/domain/models/productmodel.dart';
+import 'package:project2/domain/models/product/productmodel.dart';
 import 'dart:developer';
 
 addtocart(ProductModel product, int itemcount, BuildContext context) async {

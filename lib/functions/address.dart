@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project2/domain/models/addressmodel.dart';
+import 'package:project2/domain/models/address/addressmodel.dart';
 
 // AddressModel(address, country, state, city, zipcode)
 
@@ -17,14 +17,11 @@ addAddress(AddressModel address) async {
     final usercollection =
         parentcollection.doc(email).collection('Address-list');
     try {
-      await usercollection.add({
-        'address': address.address,
-        'country': address.country,
-        'state': address.state,
-        'city': address.city,
-        'zipcode': address.zipcode,
-        'id': DateTime.now().millisecondsSinceEpoch,
-      }).then((value) {
+      await usercollection
+          .add(
+        address.toJson(),
+      )
+          .then((value) {
         log(jsonEncode(value));
         return true;
       });
@@ -53,14 +50,11 @@ getAddressllist() async {
 
   final usercollection =
       await parentcollection.doc(email).collection('Address-list').get();
-  List<AddressModel>? addresslist;
+  List<AddressModel> addresslist = [];
   try {
     addresslist = usercollection.docs.map((doc) {
-      Map<String, dynamic> data = doc.data();
-      return AddressModel(data['address'], data['country'], data['state'],
-          data['city'], data['zipcode']);
+      return AddressModel.fromJson(doc.data());
     }).toList();
-    // log(addresslist[0].address);
     return addresslist;
   } catch (e) {
     log(e.toString());

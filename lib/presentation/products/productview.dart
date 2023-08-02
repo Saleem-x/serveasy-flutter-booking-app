@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/addtocart.dart';
-import 'package:project2/domain/models/productmodel.dart';
+import 'package:project2/domain/models/product/productmodel.dart';
 import 'package:project2/presentation/products/buynowscreen.dart';
 
 class ProductView extends StatelessWidget {

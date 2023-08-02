@@ -1,72 +1,80 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:chat_bubbles/chat_bubbles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project2/bloc/chat/chatsupport_bloc.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/presentation/widgets/appbarwidget.dart';
+import 'package:project2/domain/models/chatmodel.dart';
 
+import 'package:project2/presentation/support/chatlistwidget.dart';
+
+// ignore: must_be_immutable
 class SupportScreen extends StatelessWidget {
-  const SupportScreen({super.key});
+  SupportScreen({super.key});
 
+  final StreamController<List<ChatModel>> _chatStreamController =
+      StreamController<List<ChatModel>>();
+
+  Stream<List<ChatModel>> get chatStream => _chatStreamController.stream;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  User user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: size / 5,
-          child: const AppBArWidget(),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: colorwhite,
+          centerTitle: true,
+          title: Text(
+            'Support',
+            style: fontstyle(color: colorblack, letterSpacing: 3),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.info,
+                  color: colorblack,
+                ))
+          ],
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // SizedBox(
+            //   height: size.height * 0.02,
+            // ),
             Expanded(
-              child: SizedBox(
-                width: size.width,
-                child: const Center(child: Text('message will be here')),
+              child: ChatListWidget(
+                uid: user.uid,
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                      width: size.width - 80,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'support assist',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: colorblue),
-                          ),
-                          disabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: colorblue)),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: colorblue,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Center(
-                        child: Icon(
-                          FontAwesomeIcons.paperPlane,
-                          color: colorblue,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+            MessageBar(
+              onSend: (p0) async {
+                // sendchatsupport(
+                //   ChatModel(
+                //     p0,
+                //     DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                //     '${DateTime.now().hour}:${DateTime.now().minute}',
+                //     null,
+                //     null,
+                //   ),
+                // );
+                context.read<ChatsupportBloc>().add(
+                      Sendmessage(
+                          chat: ChatModel(
+                              p0,
+                              DateTime.now().microsecondsSinceEpoch.toString(),
+                              '${DateTime.now().hour}:${DateTime.now().minute}',
+                              user.uid,
+                              false),
+                          uid: user.uid),
+                    );
+              },
             )
           ],
         ),

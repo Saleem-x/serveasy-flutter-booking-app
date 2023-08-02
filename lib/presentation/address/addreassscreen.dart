@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/address/address_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/address.dart';
-import 'package:project2/domain/models/addressmodel.dart';
+import 'package:project2/domain/models/address/addressmodel.dart';
 
 class AddressScreen extends StatelessWidget {
   final TextEditingController _addressLine1Controller = TextEditingController();

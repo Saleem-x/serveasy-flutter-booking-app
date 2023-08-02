@@ -9,6 +9,7 @@ import 'package:project2/bloc/bottomnavbar/bottomnavbar_bloc.dart';
 import 'package:project2/bloc/buynow/buynowselection_bloc.dart';
 import 'package:project2/bloc/calender/calender_bloc.dart';
 import 'package:project2/bloc/cart/cart_bloc.dart';
+import 'package:project2/bloc/chat/chatsupport_bloc.dart';
 import 'package:project2/bloc/checkout/checkout_bloc.dart';
 import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
 import 'package:project2/bloc/orderslist/orderlist_bloc.dart';
@@ -19,11 +20,13 @@ import 'package:project2/bloc/signup/signup_bloc.dart';
 import 'package:project2/bloc/splashscreen/splashscreen_bloc.dart';
 import 'package:project2/bloc/updateuser/updateuser_bloc.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/domain/di/injectable.dart';
 import 'package:project2/functions/firebase_options.dart';
 import 'package:project2/presentation/splashscreen/splashscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  configureinjection();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseAppCheck.instance.activate(
     webRecaptchaSiteKey: 'recaptcha-v3-site-key',
@@ -86,6 +89,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<BookinglistBloc>(
           create: (context) => BookinglistBloc(),
+        ),
+        BlocProvider(
+          create: (context) => getit<ChatsupportBloc>(),
         ),
       ],
       child: MaterialApp(

@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:project2/bloc/calender/calender_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/booking.dart';
-import 'package:project2/domain/models/servicemodel.dart';
+import 'package:project2/domain/models/service/servicemodel.dart';
 import 'package:project2/domain/models/servisebookingmodel.dart';
 import 'package:project2/presentation/services/booknow.dart';
 import 'package:project2/presentation/services/widgets/slotselectionwidget.dart';

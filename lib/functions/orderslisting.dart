@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/bloc/orderslist/orderlist_bloc.dart';
 import 'package:project2/functions/getproducts.dart';
-import 'package:project2/domain/models/productmodel.dart';
+import 'package:project2/domain/models/product/productmodel.dart';
 import 'package:project2/domain/models/productordermodel.dart';
 
 getallorders(BuildContext context) async {

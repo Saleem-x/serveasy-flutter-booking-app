@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project2/constents/colors.dart';
-import 'package:project2/domain/models/addressmodel.dart';
-import 'package:project2/domain/models/servicemodel.dart';
+import 'package:project2/domain/models/address/addressmodel.dart';
+import 'package:project2/domain/models/service/servicemodel.dart';
 import 'package:project2/domain/models/servisebookingmodel.dart';
 
 bookService(ServiceBookingModel service, BuildContext context, String username,

@@ -84,7 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                             ),
                           ),
-                          Row(
+                          const Row(
                             children: [],
                           )
                         ],

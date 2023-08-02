@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:project2/domain/models/addressmodel.dart';
+import 'package:project2/domain/models/address/addressmodel.dart';
 
 part 'buynowselection_event.dart';
 part 'buynowselection_state.dart';

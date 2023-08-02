@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:project2/functions/address.dart';
-import 'package:project2/domain/models/addressmodel.dart';
+import 'package:project2/domain/models/address/addressmodel.dart';
 
 part 'checkout_event.dart';
 part 'checkout_state.dart';

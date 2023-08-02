@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,8 +11,26 @@ import 'package:project2/presentation/widgets/productwidget.dart';
 import 'package:project2/presentation/widgets/serviceswidget.dart';
 import 'package:project2/presentation/search/searchscreen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+void setuppushnotification() async {
+  final fcm = FirebaseMessaging.instance;
+  await fcm.requestPermission();
+  final token = await fcm.getToken();
+  log('$token');
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    setuppushnotification();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
