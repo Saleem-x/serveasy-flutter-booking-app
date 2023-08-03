@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/review/reviewbloc_bloc.dart';
 import 'package:project2/constents/colors.dart';
 
 class FeedBackWidget extends StatelessWidget {
@@ -7,61 +9,114 @@ class FeedBackWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: Container(
-            decoration: BoxDecoration(
-                color: colorlightshade,
-                borderRadius: BorderRadius.circular(10)),
-            // height: size.height / 5,
-            child: Column(children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 20,
-                      child: ClipOval(
-                          child: Image(
-                              image: AssetImage(
-                                  'assets/images/profileimage.png'))),
+    context.read<ReviewblocBloc>().add(const GetallReviews());
+    return BlocBuilder<ReviewblocBloc, ReviewblocState>(
+      builder: (context, state) {
+        return state.when(
+          (reviewlist) => reviewlist == null
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : reviewlist.isEmpty
+                  ? const Center(
+                      child: Text('No Reviews Available'),
+                    )
+                  : ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: reviewlist.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: colorlightshade,
+                                borderRadius: BorderRadius.circular(10)),
+                            // height: size.height / 5,
+                            child: Column(children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: Row(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 20,
+                                      child: SizedBox.fromSize(
+                                        size: size,
+                                        child: ClipOval(
+                                          child: Image(
+                                            image: NetworkImage(
+                                              reviewlist[index].imageurl,
+                                            ),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: size.width * 0.03,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          reviewlist[index].username,
+                                          style: fontstyle(),
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.02,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            shrinkWrap: true,
+                                            itemCount: 5,
+                                            itemBuilder: (context, stars) =>
+                                                Icon(
+                                              reviewlist[index].starrating <=
+                                                      stars
+                                                  ? Icons.star_outline
+                                                  : Icons.star,
+                                              color: Colors.orange,
+                                              size: 17,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      reviewlist[index].date,
+                                      style: fontstyle(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  reviewlist[index].review,
+                                  style: fontstyle(),
+                                ),
+                              )
+                            ]),
+                          ),
+                        );
+                      },
                     ),
-                    SizedBox(
-                      width: size.width * 0.03,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'username',
-                          style: fontstyle(),
-                        ),
-                        const Text('⭐⭐⭐⭐⭐'),
-                      ],
-                    ),
-                    const Spacer(),
-                    Text(
-                      '7/1/2023',
-                      style: fontstyle(),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '''is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book''',
-                  style: fontstyle(),
-                ),
-              )
-            ]),
+          loadingState: () => const Center(
+              child: CircularProgressIndicator(
+            color: colorblack,
+          )),
+          failedstate: () => const Center(
+            child: Text('failed'),
           ),
+          successState: () {
+            return const Center(
+                child: CircularProgressIndicator(
+              color: colorgreyshade,
+            ));
+          },
         );
       },
     );

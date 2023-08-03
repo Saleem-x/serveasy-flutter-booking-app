@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project2/bloc/product/products_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/product/products_bloc.dart';
 import 'package:project2/domain/models/product/productmodel.dart';
 
 getAllProducts(BuildContext context) async {

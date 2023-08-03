@@ -5,8 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
-import 'package:project2/bloc/signup/signup_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/loginscreen/loginscreen_bloc.dart';
+
+import 'package:project2/buisnesslogic/bloc/signup/signup_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> signUp(String email, String password, String name, String phone,

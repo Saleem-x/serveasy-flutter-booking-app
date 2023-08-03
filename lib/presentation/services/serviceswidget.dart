@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project2/bloc/service/service_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/service/service_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/domain/models/service/servicemodel.dart';
 import 'package:project2/functions/getservices.dart';

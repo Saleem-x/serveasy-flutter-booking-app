@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project2/bloc/calender/calender_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/calender/calender_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/booking.dart';
 import 'package:project2/presentation/services/widgets/slotcardwidget.dart';

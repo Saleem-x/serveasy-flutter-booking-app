@@ -36,6 +36,7 @@ class GetServicemodel {
   final ServiceModel service;
   final int id;
   final String status;
+  final bool isreviewadded;
 
   GetServicemodel(
       this.organiser,
@@ -47,5 +48,6 @@ class GetServicemodel {
       this.service,
       this.id,
       this.address,
-      this.status);
+      this.status,
+      this.isreviewadded);
 }

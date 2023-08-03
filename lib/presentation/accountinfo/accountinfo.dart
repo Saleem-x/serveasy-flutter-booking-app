@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
-import 'package:project2/bloc/address/address_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/accountinfo/accountinfo_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/address/address_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/accountinfo.dart';
 import 'package:project2/presentation/accountinfo/profileoverview.dart';
@@ -24,7 +24,6 @@ class AccountInfoScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       fetchUserData(context);
-     
     });
 
     return SafeArea(

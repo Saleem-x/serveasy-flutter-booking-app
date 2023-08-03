@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project2/bloc/orderslist/orderlist_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/orderslist/orderlist_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/functions/buynow.dart';
 import 'package:project2/functions/orderslisting.dart';

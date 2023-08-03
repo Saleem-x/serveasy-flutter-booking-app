@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project2/bloc/checkout/checkout_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/checkout/checkout_bloc.dart';
 import 'package:project2/constents/ecorations.dart';
 import 'package:project2/functions/addtocart.dart';
 import 'package:project2/domain/models/cartitemmodel.dart';

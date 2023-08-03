@@ -2,23 +2,25 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project2/bloc/accountinfo/accountinfo_bloc.dart';
-import 'package:project2/bloc/address/address_bloc.dart';
-import 'package:project2/bloc/bookinglist/bookinglist_bloc.dart';
-import 'package:project2/bloc/bottomnavbar/bottomnavbar_bloc.dart';
-import 'package:project2/bloc/buynow/buynowselection_bloc.dart';
-import 'package:project2/bloc/calender/calender_bloc.dart';
-import 'package:project2/bloc/cart/cart_bloc.dart';
-import 'package:project2/bloc/chat/chatsupport_bloc.dart';
-import 'package:project2/bloc/checkout/checkout_bloc.dart';
-import 'package:project2/bloc/loginscreen/loginscreen_bloc.dart';
-import 'package:project2/bloc/orderslist/orderlist_bloc.dart';
-import 'package:project2/bloc/product/products_bloc.dart';
-import 'package:project2/bloc/service/service_bloc.dart';
-import 'package:project2/bloc/servicebooknow/servicebooknow_bloc.dart';
-import 'package:project2/bloc/signup/signup_bloc.dart';
-import 'package:project2/bloc/splashscreen/splashscreen_bloc.dart';
-import 'package:project2/bloc/updateuser/updateuser_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/accountinfo/accountinfo_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/address/address_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/bookinglist/bookinglist_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/bottomnavbar/bottomnavbar_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/buynow/buynowselection_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/calender/calender_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/cart/cart_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/chat/chatsupport_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/checkout/checkout_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/loginscreen/loginscreen_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/orderslist/orderlist_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/product/products_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/review/reviewbloc_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/service/service_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/servicebooknow/servicebooknow_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/signup/signup_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/splashscreen/splashscreen_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/updateuser/updateuser_bloc.dart';
+import 'package:project2/buisnesslogic/cubit/starratingcubit/starrating_cubit.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/domain/di/injectable.dart';
 import 'package:project2/functions/firebase_options.dart';
@@ -92,6 +94,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getit<ChatsupportBloc>(),
+        ),
+        BlocProvider<StarratingCubit>(
+          create: (context) => StarratingCubit(),
+        ),
+        BlocProvider(
+          create: (context) => getit<ReviewblocBloc>(),
         ),
       ],
       child: MaterialApp(

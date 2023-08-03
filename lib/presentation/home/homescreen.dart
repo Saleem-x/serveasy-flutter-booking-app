@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project2/buisnesslogic/bloc/review/reviewbloc_bloc.dart';
 
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/widgets.dart';
@@ -22,6 +24,7 @@ void setuppushnotification() async {
   final fcm = FirebaseMessaging.instance;
   await fcm.requestPermission();
   final token = await fcm.getToken();
+  fcm.subscribeToTopic('notification');
   log('$token');
 }
 
@@ -149,7 +152,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: FeedBackWidget(),
-                  )
+                  ),
+                  SizedBox(
+                    height: size.height * 0.06,
+                  ),
                 ],
               ),
             )

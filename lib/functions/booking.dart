@@ -29,7 +29,8 @@ bookService(ServiceBookingModel service, BuildContext context, String username,
             '${address.address}/${address.city}/${address.state}/${address.country}',
         'serviceid': service.service.id,
         'id': service.id,
-        'status': 'booked'
+        'status': 'booked',
+        'isreviewadded': false,
       });
       // ignore: use_build_context_synchronously
       addtobookingtoglobal(
@@ -178,17 +179,17 @@ getbookedservices(DateTime date) async {
       }
     }
     return GetServicemodel(
-      data['organiser'],
-      data['userid'],
-      data['date'],
-      data['mobile'],
-      data['timeslot'],
-      data['requirements'],
-      service!,
-      data['id'],
-      data['address'],
-      data['status'],
-    );
+        data['organiser'],
+        data['userid'],
+        data['date'],
+        data['mobile'],
+        data['timeslot'],
+        data['requirements'],
+        service!,
+        data['id'],
+        data['address'],
+        data['status'],
+        data['isreviewadded']);
   }).toList();
 
   return servicesbooked;
@@ -237,7 +238,8 @@ getuserbookedservices() async {
           service!,
           data['id'],
           data['address'],
-          data['status']);
+          data['status'],
+          data['isreviewadded']);
     }).toList();
     // log(servicebooked[0].serviceid);
     return servicebooked;

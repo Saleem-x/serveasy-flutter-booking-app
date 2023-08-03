@@ -3,7 +3,7 @@ import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project2/bloc/chat/chatsupport_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/chat/chatsupport_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/domain/models/chatmodel.dart';
 import 'package:project2/functions/chat.dart';
