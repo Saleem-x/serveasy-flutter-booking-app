@@ -454,7 +454,7 @@ class CartCheckoutScreen extends StatelessWidget {
                             context
                                 .read<CheckoutBloc>()
                                 .add(LoadingEvent(true));
-                            checkout(cartitemslist, context);
+                            checkout(cartitemslist, context, total);
                             await Future.delayed(const Duration(seconds: 2));
                             // ignore: use_build_context_synchronously
                             context
@@ -479,5 +479,5 @@ class CartCheckoutScreen extends StatelessWidget {
   }
 }
 
-var addresslist = ['dnvjdnvjnn', 'dnvjdnvjnn2', 'dnvjdnvjnn3'];
+// var addresslist = ['dnvjdnvjnn', 'dnvjdnvjnn2', 'dnvjdnvjnn3'];
 var paymentmethods = ['Cod', 'upi'];

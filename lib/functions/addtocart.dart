@@ -149,7 +149,8 @@ totalproduct(List<CartItemmodel> cartitems) {
   return productcount;
 }
 
-checkout(List<CartItemmodel> cartlist, BuildContext context) async {
+checkout(
+    List<CartItemmodel> cartlist, BuildContext context, double total) async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final parentcollection = firestore.collection('Allusercart');
 
@@ -169,6 +170,7 @@ checkout(List<CartItemmodel> cartlist, BuildContext context) async {
       'date': DateTime.now(),
       'status': 'placed',
       'id': DateTime.now().microsecondsSinceEpoch,
+      'total': total,
     });
     // ignore: use_build_context_synchronously
     cartclearing(cartitemcollection, context);
