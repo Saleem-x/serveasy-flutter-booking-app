@@ -7,8 +7,14 @@ import 'package:project2/constents/colors.dart';
 
 import 'package:project2/domain/models/product/productmodel.dart';
 
-buyNowOrderplacing(ProductModel product, int itemcount, String address,
-    String paymentmethod, num total, BuildContext context) async {
+buyNowOrderplacing(
+    ProductModel product,
+    int itemcount,
+    String address,
+    String paymentmethod,
+    num total,
+    BuildContext context,
+    String paymentid) async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   try {
@@ -28,6 +34,7 @@ buyNowOrderplacing(ProductModel product, int itemcount, String address,
         'time': DateTime.now().microsecondsSinceEpoch,
         'status': 'Order Placed',
         'total': total,
+        'paymentid': paymentid
       },
     );
     // ignore: use_build_context_synchronously

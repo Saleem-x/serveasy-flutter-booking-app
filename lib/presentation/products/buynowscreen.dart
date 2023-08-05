@@ -6,6 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project2/buisnesslogic/bloc/address/address_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/buynow/buynowselection_bloc.dart';
+import 'package:project2/buisnesslogic/cubit/payment/paymentcubit_cubit.dart';
+import 'package:project2/constents/apikey.dart';
 
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
@@ -14,6 +16,9 @@ import 'package:project2/functions/buynow.dart';
 import 'package:project2/domain/models/address/addressmodel.dart';
 import 'package:project2/domain/models/product/productmodel.dart';
 import 'package:project2/presentation/address/addreassscreen.dart';
+import 'package:project2/presentation/products/paymentscreen.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class BuyNowScreen extends StatelessWidget {
   final ProductModel product;
@@ -466,102 +471,154 @@ class BuyNowScreen extends StatelessWidget {
                         SizedBox(
                           height: size.height * 0.03,
                         ),
-                        OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            side: const BorderSide(
-                              color: colorblue,
-                              width: 2.0,
-                            ),
-                          ),
-                          onPressed: () async {
-                            if (state.count == 0) {
-                              ScaffoldMessenger.of(context)
-                                ..removeCurrentSnackBar()
-                                ..showSnackBar(
-                                  const SnackBar(
-                                    backgroundColor: Colors.red,
-                                    content: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.info,
-                                          color: colorwhite,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text('Please check the item count')
-                                      ],
-                                    ),
-                                  ),
-                                );
-                            } else if (state.address == 'select Adress') {
-                              ScaffoldMessenger.of(context)
-                                ..removeCurrentSnackBar()
-                                ..showSnackBar(
-                                  const SnackBar(
-                                    backgroundColor: Colors.red,
-                                    content: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.info,
-                                          color: colorwhite,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text('Please Select a Address')
-                                      ],
-                                    ),
-                                  ),
-                                );
-                            } else if (state.paymentmethod ==
-                                'Select PAyment Method') {
-                              ScaffoldMessenger.of(context)
-                                ..removeCurrentSnackBar()
-                                ..showSnackBar(
-                                  const SnackBar(
-                                    backgroundColor: Colors.red,
-                                    content: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.info,
-                                          color: colorwhite,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text('Please select a Payment Method')
-                                      ],
-                                    ),
-                                  ),
-                                );
-                            } else {
-                              context
-                                  .read<BuynowselectionBloc>()
-                                  .add(BuyNowLoadingEvent(true));
-                              buyNowOrderplacing(
-                                  product,
-                                  state.count,
-                                  '${state.address!.address}/${state.address!.city}/${state.address!.state}/${state.address!.country}',
-                                  state.paymentmethod,
-                                  product.price * state.count +
-                                      (12 / 100) * product.price,
-                                  context);
-                              await Future.delayed(const Duration(seconds: 2));
-                              // ignore: use_build_context_synchronously
-                              context
-                                  .read<BuynowselectionBloc>()
-                                  .add(BuyNowLoadingEvent(false));
-                            }
+                        BlocListener<PaymentcubitCubit, PaymentcubitState>(
+                          listener: (context, payment) {
+                            payment.when(
+                              () => null,
+                              paymentSuccessState: (paymentid) => {
+                                buyNowOrderplacing(
+                                    product,
+                                    state.count,
+                                    '${state.address!.address}/${state.address!.city}/${state.address!.state}/${state.address!.country}',
+                                    state.paymentmethod,
+                                    product.price * state.count +
+                                        (12 / 100) * product.price,
+                                    context,
+                                    paymentid),
+                                Navigator.pop(context)
+                              },
+                              paymentFailedState: () {
+                                Alert(
+                                  context: context,
+                                  type: AlertType.warning,
+                                  title: "Payment Failed",
+                                  desc:
+                                      "Some thing went Wrong Please try again",
+                                  buttons: [
+                                    DialogButton(
+                                      onPressed: () async {
+                                        Navigator.pop(context);
+                                      },
+                                      width: 120,
+                                      child: const Text(
+                                        "ok",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                    )
+                                  ],
+                                ).show();
+                              },
+                            );
                           },
-                          child: Text(
-                            'Place Order',
-                            style: fontstyle(
-                              color: colorblue,
-                              fontSize: 17,
+                          child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              side: const BorderSide(
+                                color: colorblue,
+                                width: 2.0,
+                              ),
+                            ),
+                            onPressed: () async {
+                              if (state.count == 0) {
+                                ScaffoldMessenger.of(context)
+                                  ..removeCurrentSnackBar()
+                                  ..showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.red,
+                                      content: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info,
+                                            color: colorwhite,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text('Please check the item count')
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                              } else if (state.address == null) {
+                                ScaffoldMessenger.of(context)
+                                  ..removeCurrentSnackBar()
+                                  ..showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.red,
+                                      content: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info,
+                                            color: colorwhite,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text('Please Select a Address')
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                              } else if (state.paymentmethod ==
+                                  'Select PAyment Method') {
+                                ScaffoldMessenger.of(context)
+                                  ..removeCurrentSnackBar()
+                                  ..showSnackBar(
+                                    const SnackBar(
+                                      backgroundColor: Colors.red,
+                                      content: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.info,
+                                            color: colorwhite,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text('Please select a Payment Method')
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                              } else if (state.paymentmethod == 'upi') {
+                                context.read<PaymentcubitCubit>().submitpayent(
+                                      product,
+                                      state.count,
+                                      '${state.address!.address}/${state.address!.city}/${state.address!.state}/${state.address!.country}',
+                                      state.paymentmethod,
+                                      product.price * state.count +
+                                          (12 / 100) * product.price,
+                                    );
+                              } else {
+                                context
+                                    .read<BuynowselectionBloc>()
+                                    .add(BuyNowLoadingEvent(true));
+                                buyNowOrderplacing(
+                                    product,
+                                    state.count,
+                                    '${state.address!.address}/${state.address!.city}/${state.address!.state}/${state.address!.country}',
+                                    state.paymentmethod,
+                                    product.price * state.count +
+                                        (12 / 100) * product.price,
+                                    context,
+                                    'COD');
+                                await Future.delayed(
+                                    const Duration(seconds: 2));
+                                // ignore: use_build_context_synchronously
+                                context
+                                    .read<BuynowselectionBloc>()
+                                    .add(BuyNowLoadingEvent(false));
+                              }
+                            },
+                            child: Text(
+                              'Place Order',
+                              style: fontstyle(
+                                color: colorblue,
+                                fontSize: 17,
+                              ),
                             ),
                           ),
                         )
@@ -575,5 +632,4 @@ class BuyNowScreen extends StatelessWidget {
   }
 }
 
-var addresslist = ['dnvjdnvjnn', 'dnvjdnvjnn2', 'dnvjdnvjnn3'];
 var paymentmethods = ['Cod', 'upi'];
