@@ -74,6 +74,9 @@ class SupportScreen extends StatelessWidget {
                               false),
                           uid: user.uid),
                     );
+                context
+                    .read<ChatsupportBloc>()
+                    .add(Getchatsevent(uid: user.uid));
               },
             )
           ],

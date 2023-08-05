@@ -18,7 +18,7 @@ class ReviewblocBloc extends Bloc<ReviewblocEvent, ReviewblocState> {
   ReviewblocBloc(this.iReviewRepo) : super(ReviewblocState.initial()) {
     on<SendReview>((event, emit) async {
       Either<MainFailures, String> sendreview =
-          await iReviewRepo.sendaReview(event.review);
+          await iReviewRepo.sendaReview(event.review, event.id);
       emit(
         sendreview.fold(
           (l) => const ReviewblocState.failedstate(),

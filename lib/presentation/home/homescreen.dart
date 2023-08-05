@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/widgets.dart';
+import 'package:project2/presentation/notification/notificationscreen.dart';
 import 'package:project2/presentation/widgets/customerfeedbackwidget.dart';
 import 'package:project2/presentation/widgets/productwidget.dart';
 import 'package:project2/presentation/widgets/serviceswidget.dart';
@@ -68,7 +69,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NotificationScreen(),
+                      ),
+                    );
+                  },
                   icon: const Icon(FontAwesomeIcons.bell),
                 ),
                 IconButton(

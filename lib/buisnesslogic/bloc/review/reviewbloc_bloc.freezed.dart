@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ReviewblocEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ReviewModel review) sendReview,
+    required TResult Function(ReviewModel review, int id) sendReview,
     required TResult Function() getallReviews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ReviewModel review)? sendReview,
+    TResult? Function(ReviewModel review, int id)? sendReview,
     TResult? Function()? getallReviews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ReviewModel review)? sendReview,
+    TResult Function(ReviewModel review, int id)? sendReview,
     TResult Function()? getallReviews,
     required TResult orElse(),
   }) =>
@@ -80,7 +80,7 @@ abstract class _$$SendReviewCopyWith<$Res> {
           _$SendReview value, $Res Function(_$SendReview) then) =
       __$$SendReviewCopyWithImpl<$Res>;
   @useResult
-  $Res call({ReviewModel review});
+  $Res call({ReviewModel review, int id});
 }
 
 /// @nodoc
@@ -95,12 +95,17 @@ class __$$SendReviewCopyWithImpl<$Res>
   @override
   $Res call({
     Object? review = null,
+    Object? id = null,
   }) {
     return _then(_$SendReview(
       review: null == review
           ? _value.review
           : review // ignore: cast_nullable_to_non_nullable
               as ReviewModel,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -108,14 +113,16 @@ class __$$SendReviewCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SendReview implements SendReview {
-  const _$SendReview({required this.review});
+  const _$SendReview({required this.review, required this.id});
 
   @override
   final ReviewModel review;
+  @override
+  final int id;
 
   @override
   String toString() {
-    return 'ReviewblocEvent.sendReview(review: $review)';
+    return 'ReviewblocEvent.sendReview(review: $review, id: $id)';
   }
 
   @override
@@ -123,11 +130,12 @@ class _$SendReview implements SendReview {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendReview &&
-            (identical(other.review, review) || other.review == review));
+            (identical(other.review, review) || other.review == review) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, review);
+  int get hashCode => Object.hash(runtimeType, review, id);
 
   @JsonKey(ignore: true)
   @override
@@ -138,30 +146,30 @@ class _$SendReview implements SendReview {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ReviewModel review) sendReview,
+    required TResult Function(ReviewModel review, int id) sendReview,
     required TResult Function() getallReviews,
   }) {
-    return sendReview(review);
+    return sendReview(review, id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ReviewModel review)? sendReview,
+    TResult? Function(ReviewModel review, int id)? sendReview,
     TResult? Function()? getallReviews,
   }) {
-    return sendReview?.call(review);
+    return sendReview?.call(review, id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ReviewModel review)? sendReview,
+    TResult Function(ReviewModel review, int id)? sendReview,
     TResult Function()? getallReviews,
     required TResult orElse(),
   }) {
     if (sendReview != null) {
-      return sendReview(review);
+      return sendReview(review, id);
     }
     return orElse();
   }
@@ -199,9 +207,12 @@ class _$SendReview implements SendReview {
 }
 
 abstract class SendReview implements ReviewblocEvent {
-  const factory SendReview({required final ReviewModel review}) = _$SendReview;
+  const factory SendReview(
+      {required final ReviewModel review,
+      required final int id}) = _$SendReview;
 
   ReviewModel get review;
+  int get id;
   @JsonKey(ignore: true)
   _$$SendReviewCopyWith<_$SendReview> get copyWith =>
       throw _privateConstructorUsedError;
@@ -245,7 +256,7 @@ class _$GetallReviews implements GetallReviews {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ReviewModel review) sendReview,
+    required TResult Function(ReviewModel review, int id) sendReview,
     required TResult Function() getallReviews,
   }) {
     return getallReviews();
@@ -254,7 +265,7 @@ class _$GetallReviews implements GetallReviews {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ReviewModel review)? sendReview,
+    TResult? Function(ReviewModel review, int id)? sendReview,
     TResult? Function()? getallReviews,
   }) {
     return getallReviews?.call();
@@ -263,7 +274,7 @@ class _$GetallReviews implements GetallReviews {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ReviewModel review)? sendReview,
+    TResult Function(ReviewModel review, int id)? sendReview,
     TResult Function()? getallReviews,
     required TResult orElse(),
   }) {

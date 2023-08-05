@@ -33,8 +33,11 @@ class ChatListWidget extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     )
                   : snapshot.data!.isEmpty
-                      ? const Center(
-                          child: Text('no-chat'),
+                      ? Center(
+                          child: Text(
+                            'you can ask support here',
+                            style: fontstyle(),
+                          ),
                         )
                       : ListView.separated(
                           dragStartBehavior: DragStartBehavior.down,

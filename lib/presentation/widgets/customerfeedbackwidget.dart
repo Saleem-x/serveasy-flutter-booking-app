@@ -26,7 +26,8 @@ class FeedBackWidget extends StatelessWidget {
                         ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: reviewlist.length,
+                          itemCount:
+                              reviewlist.length >= 5 ? 5 : reviewlist.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(

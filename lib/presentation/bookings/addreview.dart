@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:project2/buisnesslogic/bloc/bookinglist/bookinglist_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/review/reviewbloc_bloc.dart';
 import 'package:project2/buisnesslogic/cubit/starratingcubit/starrating_cubit.dart';
 import 'package:project2/constents/colors.dart';
@@ -28,6 +31,7 @@ class ReviewAddingScreen extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () {
+            // log(service.id.toString());
             Navigator.pop(context);
           },
           icon: const Icon(
@@ -169,16 +173,23 @@ class ReviewAddingScreen extends StatelessWidget {
                       ),
                       onPressed: () async {
                         if (_formkey.currentState!.validate()) {
-                          context.read<ReviewblocBloc>().add(SendReview(
-                              review: ReviewModel(
-                                  'username',
-                                  _reviewcontroller.text,
-                                  state.rating,
-                                  DateFormat('yyyy-MM-dd')
-                                      .format(DateTime.now()),
-                                  'imageurl')));
+                          log(service.id);
+                          context.read<ReviewblocBloc>().add(
+                                SendReview(
+                                    review: ReviewModel(
+                                        'username',
+                                        _reviewcontroller.text,
+                                        state.rating,
+                                        DateFormat('yyyy-MM-dd')
+                                            .format(DateTime.now()),
+                                        'imageurl'),
+                                    id: service.id),
+                              );
                           await Future.delayed(
                               const Duration(microseconds: 100), () {
+                            context
+                                .read<BookinglistBloc>()
+                                .add(const Getallbookedservices());
                             Navigator.pop(context);
                           });
                         }

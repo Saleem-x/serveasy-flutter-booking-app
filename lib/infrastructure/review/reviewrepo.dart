@@ -29,10 +29,17 @@ class ReviewRepo implements IReviewRepo {
   }
 
   @override
-  Future<Either<MainFailures, String>> sendaReview(ReviewModel review) async {
+  Future<Either<MainFailures, String>> sendaReview(
+      ReviewModel review, int id) async {
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       final useruid = FirebaseAuth.instance.currentUser!.uid;
+      final useremail = FirebaseAuth.instance.currentUser!.email;
+      final bookingref = await firestore
+          .collection('Service-Bookings')
+          .doc(useremail)
+          .collection('Booked')
+          .get();
       final userdoc = await firestore.collection('users').doc(useruid).get();
       final username = userdoc.data()!['name'];
       final imageurl = userdoc.data()!['profileimage'];
@@ -41,8 +48,14 @@ class ReviewRepo implements IReviewRepo {
           username, review.review, review.starrating, review.date, imageurl);
 
       firestore.collection('reviews').add(freview.toJson());
-
-      return right('uploaded');
+      for (var item in bookingref.docs) {
+        if (item['id'] == id) {
+          await item.reference.update({'isreviewadded': true});
+          return right('uploaded');
+        }
+        return left(const MainFailures.clientfailure());
+      }
+      return left(const MainFailures.clientfailure());
     } catch (e) {
       return left(const MainFailures.clientfailure());
     }

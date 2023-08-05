@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/address/address_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/bloc/notification_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/bookinglist/bookinglist_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/bottomnavbar/bottomnavbar_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/buynow/buynowselection_bloc.dart';
@@ -100,6 +101,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getit<ReviewblocBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getit<NotificationBloc>(),
         ),
       ],
       child: MaterialApp(
