@@ -1,13 +1,9 @@
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:project2/constents/apikey.dart';
-import 'package:project2/domain/models/product/productmodel.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-
 part 'paymentcubit_state.dart';
 part 'paymentcubit_cubit.freezed.dart';
 
@@ -15,7 +11,7 @@ class PaymentcubitCubit extends Cubit<PaymentcubitState> {
   PaymentcubitCubit() : super(PaymentcubitState.initial());
 
   void submitpayent(
-    ProductModel product,
+    String productname,
     int itemcount,
     String address,
     String paymentmethod,
@@ -29,7 +25,7 @@ class PaymentcubitCubit extends Cubit<PaymentcubitState> {
       'amount': total.toInt() * 100,
       'timeout': 120,
       'name': 'Serveasy',
-      'description': product.name,
+      'description': productname,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
       'prefill': {'contact': user.displayName, 'email': user.email},

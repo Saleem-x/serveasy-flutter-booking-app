@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/address/address_bloc.dart';
-import 'package:project2/buisnesslogic/bloc/bloc/notification_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/bookinglist/bookinglist_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/bottomnavbar/bottomnavbar_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/buynow/buynowselection_bloc.dart';
@@ -13,14 +12,17 @@ import 'package:project2/buisnesslogic/bloc/cart/cart_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/chat/chatsupport_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/checkout/checkout_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/loginscreen/loginscreen_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/notification/notification_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/orderslist/orderlist_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/product/products_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/review/reviewbloc_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/search/search_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/service/service_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/servicebooknow/servicebooknow_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/signup/signup_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/splashscreen/splashscreen_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/updateuser/updateuser_bloc.dart';
+import 'package:project2/buisnesslogic/cubit/choicechips/choicechips_cubit.dart';
 import 'package:project2/buisnesslogic/cubit/payment/paymentcubit_cubit.dart';
 import 'package:project2/buisnesslogic/cubit/starratingcubit/starrating_cubit.dart';
 import 'package:project2/constents/colors.dart';
@@ -108,6 +110,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<PaymentcubitCubit>(
           create: (context) => PaymentcubitCubit(),
+        ),
+        BlocProvider<ChoicechipsCubit>(
+          create: (context) => ChoicechipsCubit(),
+        ),
+        BlocProvider(
+          create: (context) => getit<SearchBloc>(),
         ),
       ],
       child: MaterialApp(

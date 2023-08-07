@@ -14,8 +14,11 @@ getallorders(BuildContext context) async {
   ProductModel? product;
 
   final email = await getuser();
-  QuerySnapshot querySnapshot =
-      await parentcollection.doc(email).collection('orders').get();
+  QuerySnapshot querySnapshot = await parentcollection
+      .doc(email)
+      .collection('orders')
+      .orderBy('time', descending: true)
+      .get();
   List<ProductOrdermodel> orderslist = querySnapshot.docs.map((doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     final productid = int.parse(data['prodect']);

@@ -134,7 +134,8 @@ addtobookingtoglobal(ServiceBookingModel service, String username,
         'serviceid': service.service.id,
         'address': address,
         'id': service.id,
-        'status': 'booked'
+        'status': 'booked',
+        'isreviewadded': false,
       });
     } catch (e) {
       log(e.toString());

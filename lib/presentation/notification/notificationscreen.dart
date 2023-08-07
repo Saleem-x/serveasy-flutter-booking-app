@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project2/buisnesslogic/bloc/bloc/notification_bloc.dart';
+import 'package:project2/buisnesslogic/bloc/notification/notification_bloc.dart';
 import 'package:project2/constents/colors.dart';
 
 class NotificationScreen extends StatelessWidget {

@@ -7,8 +7,6 @@ import 'package:lottie/lottie.dart';
 import 'package:project2/buisnesslogic/bloc/address/address_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/buynow/buynowselection_bloc.dart';
 import 'package:project2/buisnesslogic/cubit/payment/paymentcubit_cubit.dart';
-import 'package:project2/constents/apikey.dart';
-
 import 'package:project2/constents/colors.dart';
 import 'package:project2/constents/ecorations.dart';
 import 'package:project2/functions/address.dart';
@@ -16,8 +14,6 @@ import 'package:project2/functions/buynow.dart';
 import 'package:project2/domain/models/address/addressmodel.dart';
 import 'package:project2/domain/models/product/productmodel.dart';
 import 'package:project2/presentation/address/addreassscreen.dart';
-import 'package:project2/presentation/products/paymentscreen.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class BuyNowScreen extends StatelessWidget {
@@ -585,7 +581,7 @@ class BuyNowScreen extends StatelessWidget {
                                   );
                               } else if (state.paymentmethod == 'upi') {
                                 context.read<PaymentcubitCubit>().submitpayent(
-                                      product,
+                                      product.name,
                                       state.count,
                                       '${state.address!.address}/${state.address!.city}/${state.address!.state}/${state.address!.country}',
                                       state.paymentmethod,

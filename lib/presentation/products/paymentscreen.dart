@@ -10,7 +10,7 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('payment'),
+        title: const Text('payment'),
       ),
       body: Column(children: [
         Center(
