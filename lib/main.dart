@@ -24,6 +24,7 @@ import 'package:project2/buisnesslogic/bloc/splashscreen/splashscreen_bloc.dart'
 import 'package:project2/buisnesslogic/bloc/updateuser/updateuser_bloc.dart';
 import 'package:project2/buisnesslogic/cubit/choicechips/choicechips_cubit.dart';
 import 'package:project2/buisnesslogic/cubit/payment/paymentcubit_cubit.dart';
+import 'package:project2/buisnesslogic/cubit/reviewpagination/reviewpagination_cubit.dart';
 import 'package:project2/buisnesslogic/cubit/starratingcubit/starrating_cubit.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/domain/di/injectable.dart';
@@ -116,6 +117,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getit<SearchBloc>(),
+        ),
+        BlocProvider<ReviewpaginationCubit>(
+          create: (context) => ReviewpaginationCubit(),
         ),
       ],
       child: MaterialApp(

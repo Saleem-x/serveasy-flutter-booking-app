@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/review/reviewbloc_bloc.dart';
 import 'package:project2/constents/colors.dart';
+import 'package:project2/presentation/review/reviewfull.dart';
 
 class FeedBackWidget extends StatelessWidget {
   const FeedBackWidget({super.key});
@@ -125,7 +126,14 @@ class FeedBackWidget extends StatelessWidget {
                             ? SizedBox(
                                 height: size.height * 0.06,
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ReviewFullView(),
+                                        ));
+                                  },
                                   child: Card(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
