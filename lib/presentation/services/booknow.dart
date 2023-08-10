@@ -151,7 +151,7 @@ class _BookNowScreenState extends State<BookNowScreen> {
                                   right: 50,
                                   bottom: 0,
                                   child: Container(
-                                    height: size.height * 0.15,
+                                    // height: size.height * 0.15,
                                     width: size.width - 30,
                                     decoration: BoxDecoration(
                                       color: colorblue,
@@ -174,8 +174,10 @@ class _BookNowScreenState extends State<BookNowScreen> {
                                                     .withOpacity(0.5),
                                                 spreadRadius: 2,
                                                 blurRadius: 5,
-                                                offset: const Offset(0,
-                                                    3), // changes the shadow position
+                                                offset: const Offset(
+                                                  0,
+                                                  3,
+                                                ),
                                               ),
                                             ],
                                             image: DecorationImage(

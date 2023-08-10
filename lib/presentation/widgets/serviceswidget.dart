@@ -65,7 +65,7 @@ class SearvicesList extends StatelessWidget {
                               Flexible(
                                 flex: 1,
                                 child: Container(
-                                  height: size.height * 0.09,
+                                  height: size.height * 0.12,
                                   decoration: BoxDecoration(
                                     color: colorwhite,
                                     boxShadow: [insetboxshadow],
@@ -97,12 +97,6 @@ class SearvicesList extends StatelessWidget {
                                                   color: colorblack,
                                                   fontSize: 17),
                                             ),
-                                            // Container(
-                                            //   decoration: decoration3,
-                                            //   child: const Center(
-                                            //       child: Icon(
-                                            //           CupertinoIcons.forward)),
-                                            // )
                                             Card(
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:

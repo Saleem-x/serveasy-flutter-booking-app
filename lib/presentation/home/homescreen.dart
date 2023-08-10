@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: SizedBox(
-                      height: size.height * 0.28,
+                      height: size.height * 0.30,
                       child: const SearvicesList(),
                     ),
                   ),
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: SizedBox(
-                      height: size.height * 0.28,
+                      height: size.height * 0.30,
                       child: const ProductWidget(),
                     ),
                   ),

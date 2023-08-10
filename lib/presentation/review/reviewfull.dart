@@ -163,7 +163,8 @@ class _ReviewFullViewState extends State<ReviewFullView> {
                                           'No More Reviews',
                                           style: fontstyle(),
                                         ),
-                                      ));
+                                      ),
+                                    );
                             },
                           );
                         },

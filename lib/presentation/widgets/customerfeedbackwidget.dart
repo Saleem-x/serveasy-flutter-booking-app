@@ -128,11 +128,12 @@ class FeedBackWidget extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ReviewFullView(),
-                                        ));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ReviewFullView(),
+                                      ),
+                                    );
                                   },
                                   child: Card(
                                     shape: RoundedRectangleBorder(

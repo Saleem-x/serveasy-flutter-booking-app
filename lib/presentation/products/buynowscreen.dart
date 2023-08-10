@@ -84,7 +84,7 @@ class BuyNowScreen extends StatelessWidget {
                               right: 50,
                               bottom: 0,
                               child: Container(
-                                height: size.height * 0.15,
+                                // height: size.height * 0.15,
                                 width: size.width - 30,
                                 decoration: BoxDecoration(
                                   color: colorblue,

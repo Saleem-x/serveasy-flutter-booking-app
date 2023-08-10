@@ -21,7 +21,7 @@ class ReviewAddingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    context.read<StarratingCubit>().selectstar(1);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colorwhite,
@@ -31,7 +31,6 @@ class ReviewAddingScreen extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () {
-            // log(service.id.toString());
             Navigator.pop(context);
           },
           icon: const Icon(

@@ -19,8 +19,8 @@ class ReviewpaginationCubit extends Cubit<ReviewpaginationState> {
       return ReviewModel.fromJson(doc.data());
     }).toList();
 
-    List<ReviewModel> listtosend =
-        reviewlist.length < 6 ? reviewlist : reviewlist;
+    // List<ReviewModel> listtosend =
+    //     reviewlist.length < 6 ? reviewlist : reviewlist;
 
     emit(ReviewpaginationState(reviewlist: reviewlist, isloading: false));
   }

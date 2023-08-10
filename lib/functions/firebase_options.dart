@@ -66,7 +66,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '689618440082',
     projectId: 'serveasy-b3b33',
     storageBucket: 'serveasy-b3b33.appspot.com',
-    iosClientId: '689618440082-5fajtgvul3o0fqj1kdsnk4uudq6vc5u2.apps.googleusercontent.com',
+    iosClientId:
+        '689618440082-5fajtgvul3o0fqj1kdsnk4uudq6vc5u2.apps.googleusercontent.com',
     iosBundleId: 'com.example.project2',
   );
 
@@ -76,7 +77,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '689618440082',
     projectId: 'serveasy-b3b33',
     storageBucket: 'serveasy-b3b33.appspot.com',
-    iosClientId: '689618440082-aopaa335fal7u72tk1btl7a3fvaauppl.apps.googleusercontent.com',
+    iosClientId:
+        '689618440082-aopaa335fal7u72tk1btl7a3fvaauppl.apps.googleusercontent.com',
     iosBundleId: 'com.example.project2.RunnerTests',
   );
 }
