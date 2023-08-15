@@ -16,12 +16,12 @@ GetCartOrdersModel _$GetCartOrdersModelFromJson(Map<String, dynamic> json) =>
       (json['total'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$GetCartOrdersModelToJson(GetCartOrdersModel instance) =>
-    <String, dynamic>{
-      'date': instance.date,
-      'id': instance.id,
-      'products': instance.productslist,
-      'status': instance.status,
-      'refurl': instance.refurl,
-      'total': instance.total,
-    };
+// Map<String, dynamic> _$GetCartOrdersModelToJson(GetCartOrdersModel instance) =>
+//     <String, dynamic>{
+//       'date': instance.date,
+//       'id': instance.id,
+//       'products': instance.productslist,
+//       'status': instance.status,
+//       'refurl': instance.refurl,
+//       'total': instance.total,
+//     };

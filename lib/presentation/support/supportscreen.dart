@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +20,8 @@ class SupportScreen extends StatelessWidget {
   Stream<List<ChatModel>> get chatStream => _chatStreamController.stream;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   User user = FirebaseAuth.instance.currentUser!;
+  final _scrollnotifier = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
@@ -45,35 +46,32 @@ class SupportScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            // SizedBox(
-            //   height: size.height * 0.02,
-            // ),
             Expanded(
               child: ChatListWidget(
                 uid: user.uid,
+                scrollnotifier: _scrollnotifier,
               ),
             ),
             MessageBar(
               onSend: (p0) async {
-                // sendchatsupport(
-                //   ChatModel(
-                //     p0,
-                //     DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                //     '${DateTime.now().hour}:${DateTime.now().minute}',
-                //     null,
-                //     null,
-                //   ),
-                // );
                 context.read<ChatsupportBloc>().add(
                       Sendmessage(
                           chat: ChatModel(
-                              p0,
-                              DateTime.now().microsecondsSinceEpoch.toString(),
-                              '${DateTime.now().hour}:${DateTime.now().minute}',
-                              user.uid,
-                              false),
+                            p0,
+                            DateTime.now().millisecondsSinceEpoch.toString(),
+                            '${DateTime.now().hour}:${DateTime.now().minute}',
+                            user.uid,
+                            false,
+                          ),
                           uid: user.uid),
                     );
+                if (_scrollnotifier.hasClients) {
+                  _scrollnotifier.animateTo(
+                    _scrollnotifier.position.maxScrollExtent,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                  );
+                }
                 context
                     .read<ChatsupportBloc>()
                     .add(Getchatsevent(uid: user.uid));

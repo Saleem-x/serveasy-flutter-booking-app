@@ -44,3 +44,18 @@ Future<List<ChatModel>> getchats() async {
   }).toList();
   return chatlist;
 }
+
+Stream<List<ChatModel>> getchatsStream() {
+  User user = FirebaseAuth.instance.currentUser!;
+  return FirebaseFirestore.instance
+      .collection('Chat-Support')
+      .doc(user.uid)
+      .collection('messages')
+      .orderBy('date')
+      .snapshots()
+      .map((querySnapshot) {
+    return querySnapshot.docs.map((doc) {
+      return ChatModel.fromJson(doc.data());
+    }).toList();
+  });
+}

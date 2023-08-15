@@ -29,9 +29,7 @@ Future<void> login(String email, String password, BuildContext context) async {
         (route) => false);
     // ignore: use_build_context_synchronously
     context.read<LoginscreenBloc>().add(Loadingevent(isloading: false));
-    log('User logged in: ${user.uid}');
   } catch (e) {
-    log('Login error: $e');
     if (e.toString() ==
         '[firebase_auth/wrong-password] The password is invalid or the user does not have a password.') {
       context.read<LoginscreenBloc>().add(Loadingevent(isloading: false));

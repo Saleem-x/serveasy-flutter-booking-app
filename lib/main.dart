@@ -2,6 +2,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/date_symbol_data_file.dart';
 import 'package:project2/buisnesslogic/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/address/address_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/bookinglist/bookinglist_bloc.dart';
@@ -34,6 +35,7 @@ import 'package:project2/presentation/splashscreen/splashscreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureinjection();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseAppCheck.instance.activate(
     webRecaptchaSiteKey: 'recaptcha-v3-site-key',
@@ -123,7 +125,6 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: colorblue,
           // useMaterial3: true,
