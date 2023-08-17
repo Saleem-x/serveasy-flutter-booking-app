@@ -11,6 +11,7 @@ getAllServices(BuildContext context) async {
   List<ServiceModel> services = querySnapshot.docs.map((doc) {
     return ServiceModel.fromJson(doc.data() as Map<String, dynamic>);
   }).toList();
-  // ignore: use_build_context_synchronously
-  context.read<ServiceBloc>().add(GetAllServicesEvent(services));
+  Future.delayed(const Duration(microseconds: 100), () {
+    context.read<ServiceBloc>().add(GetAllServicesEvent(services));
+  });
 }

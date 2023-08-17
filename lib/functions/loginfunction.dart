@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/loginscreen/loginscreen_bloc.dart';
@@ -7,17 +6,15 @@ import 'package:project2/buisnesslogic/bloc/signup/signup_bloc.dart';
 
 import 'package:project2/presentation/widgets/bottomnavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:project2/ui/widgets/bottomnavigation.dart';
 
 Future<void> login(String email, String password, BuildContext context) async {
   try {
     context.read<LoginscreenBloc>().add(Loadingevent(isloading: true));
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+    // UserCredential userCredential =
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
-    User user = userCredential.user!;
     await Future.delayed(const Duration(seconds: 3));
     final sharedprefs = await SharedPreferences.getInstance();
     sharedprefs.setBool('userin', true);

@@ -32,12 +32,6 @@ class ServicesWidget extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Card(
-                          // height: size.height / 2,
-                          // decoration: BoxDecoration(
-                          //   color: colorblue,
-                          //   borderRadius: BorderRadius.circular(10),
-                          // ),
-                          // decoration: decoration1,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
@@ -52,12 +46,6 @@ class ServicesWidget extends StatelessWidget {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(30)),
-                                      // height: size.height * 0.05,
-                                      // width: size.width * 0.3,
-                                      // decoration: BoxDecoration(
-                                      //   color: colorblue.shade300,
-                                      //   borderRadius: BorderRadius.circular(30),
-                                      // ),
                                       color: colorblue.shade300,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),

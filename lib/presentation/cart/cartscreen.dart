@@ -107,7 +107,7 @@ class CartScreen extends StatelessWidget {
                                           ),
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
-                                                horizontal: 15, vertical: 10),
+                                                horizontal: 15, vertical: 0),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -124,9 +124,9 @@ class CartScreen extends StatelessWidget {
                                                           FontWeight.bold),
                                                 ),
                                                 const Divider(),
-                                                SizedBox(
-                                                  height: size.height * 0.005,
-                                                ),
+                                                // SizedBox(
+                                                //   height: size.height * 0.005,
+                                                // ),
                                                 Text(
                                                   'price ₹${state.cartitems![index].product.price * state.cartitems![index].itemcount}',
                                                   style: fontstyle(

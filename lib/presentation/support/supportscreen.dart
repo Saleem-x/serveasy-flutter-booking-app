@@ -1,5 +1,3 @@
-import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
@@ -14,17 +12,10 @@ import 'package:project2/presentation/support/chatlistwidget.dart';
 class SupportScreen extends StatelessWidget {
   SupportScreen({super.key});
 
-  final StreamController<List<ChatModel>> _chatStreamController =
-      StreamController<List<ChatModel>>();
-
-  Stream<List<ChatModel>> get chatStream => _chatStreamController.stream;
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
   User user = FirebaseAuth.instance.currentUser!;
-  final _scrollnotifier = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -49,7 +40,6 @@ class SupportScreen extends StatelessWidget {
             Expanded(
               child: ChatListWidget(
                 uid: user.uid,
-                scrollnotifier: _scrollnotifier,
               ),
             ),
             MessageBar(
@@ -65,13 +55,6 @@ class SupportScreen extends StatelessWidget {
                           ),
                           uid: user.uid),
                     );
-                if (_scrollnotifier.hasClients) {
-                  _scrollnotifier.animateTo(
-                    _scrollnotifier.position.maxScrollExtent,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                  );
-                }
                 context
                     .read<ChatsupportBloc>()
                     .add(Getchatsevent(uid: user.uid));

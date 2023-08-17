@@ -2,7 +2,6 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:project2/buisnesslogic/bloc/accountinfo/accountinfo_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/address/address_bloc.dart';
 import 'package:project2/buisnesslogic/bloc/bookinglist/bookinglist_bloc.dart';
@@ -31,11 +30,12 @@ import 'package:project2/constents/colors.dart';
 import 'package:project2/domain/di/injectable.dart';
 import 'package:project2/functions/firebase_options.dart';
 import 'package:project2/presentation/splashscreen/splashscreen.dart';
+import 'package:upgrader/upgrader.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureinjection();
-
+  Upgrader.clearSavedSettings();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseAppCheck.instance.activate(
     webRecaptchaSiteKey: 'recaptcha-v3-site-key',

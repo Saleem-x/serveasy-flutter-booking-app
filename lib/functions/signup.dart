@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -59,54 +58,37 @@ Future<bool> isEmailAlreadyRegistered(String email) async {
 }
 
 signInWithGoogle(BuildContext context) async {
-  log('1');
   final FirebaseAuth auth = FirebaseAuth.instance;
-  auth.signOut();
-  final GoogleSignIn googleSignIn = GoogleSignIn();
-  googleSignIn.disconnect();
-  log('2');
-  final GoogleSignInAccount? googleSignInAccount;
-  if (Platform.isAndroid) {
-    log('3');
-    googleSignInAccount = await googleSignIn.signIn();
-    log('4');
-    final GoogleSignInAuthentication googleAuth =
-        await googleSignInAccount!.authentication;
-
-    final OAuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    log('5');
-
-    // ignore: use_build_context_synchronously
-    context.read<LoginscreenBloc>().add(Loadingevent(isloading: true));
-    // ignore: use_build_context_synchronously
-    context.read<SignupBloc>().add(UserCreated(context));
-
-    final UserCredential userCredential =
-        await auth.signInWithCredential(credential);
-
-    final sharedprefs = await SharedPreferences.getInstance();
-    sharedprefs.setBool('userin', true);
-    // ignore: use_build_context_synchronously
-    context.read<LoginscreenBloc>().add(Loadingevent(isloading: false));
-    log(userCredential.user.toString());
-    uploaduserdetails(googleSignInAccount, userCredential.user!);
+  if (auth.currentUser != null) {
+    await auth.signOut();
   }
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  // if (googleSignIn.currentUser != null) {
+  //   await googleSignIn.disconnect();
+  // }
+  final GoogleSignInAccount? googleSignInAccount;
+  googleSignInAccount = await googleSignIn.signIn();
+  final GoogleSignInAuthentication googleAuth =
+      await googleSignInAccount!.authentication;
 
-// // ignore: use_build_context_synchronously
-//   try {
-//     final UserCredential userCredential =
-//         await auth.signInWithCredential(credential);
+  final OAuthCredential credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth.accessToken,
+    idToken: googleAuth.idToken,
+  );
 
-//     return userCredential;
-//   } catch (e) {
-//     // ignore: use_build_context_synchronously
+  // ignore: use_build_context_synchronously
+  context.read<LoginscreenBloc>().add(Loadingevent(isloading: true));
+  // ignore: use_build_context_synchronously
+  context.read<SignupBloc>().add(UserCreated(context));
 
-//     log(e.toString());
-//     return null;
-//   }
+  final UserCredential userCredential =
+      await auth.signInWithCredential(credential);
+
+  final sharedprefs = await SharedPreferences.getInstance();
+  sharedprefs.setBool('userin', true);
+  // ignore: use_build_context_synchronously
+  context.read<LoginscreenBloc>().add(Loadingevent(isloading: false));
+  await uploaduserdetails(googleSignInAccount, userCredential.user!);
 }
 
 uploaduserdetails(GoogleSignInAccount account, User user) async {

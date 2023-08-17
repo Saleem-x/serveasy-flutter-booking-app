@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:project2/buisnesslogic/bloc/review/reviewbloc_bloc.dart';
 import 'package:project2/constents/colors.dart';
 import 'package:project2/presentation/review/reviewfull.dart';
@@ -76,7 +77,10 @@ class FeedBackWidget extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  reviewlist[index].username,
+                                                  DateFormat('MMMM d, y')
+                                                      .format(DateTime.parse(
+                                                          reviewlist[index]
+                                                              .date)),
                                                   style: fontstyle(),
                                                 ),
                                                 SizedBox(

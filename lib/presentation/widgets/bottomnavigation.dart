@@ -67,9 +67,11 @@ class BottomNavBarWidget extends StatelessWidget {
             builder: (context, state) {
               return PageView(
                 onPageChanged: (value) {
-                  controller.jumpToPage(value);
-                  BlocProvider.of<BottomnavbarBloc>(context)
-                      .add(Changepage(index: value));
+                  Future.delayed(const Duration(microseconds: 100), () {
+                    controller.jumpToPage(value);
+                    BlocProvider.of<BottomnavbarBloc>(context)
+                        .add(Changepage(index: value));
+                  });
                 },
                 controller: controller,
                 physics: const NeverScrollableScrollPhysics(),

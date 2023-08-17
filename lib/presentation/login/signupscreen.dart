@@ -148,19 +148,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             width: size.width * 0.03,
                           ),
-                          const CircleAvatar(
-                            radius: 17,
-                            child: CircleAvatar(
-                              backgroundColor: colorwhite,
-                              radius: 15,
-                              child: Center(
-                                child: Icon(
-                                  FontAwesomeIcons.phone,
-                                  size: 14,
-                                ),
-                              ),
-                            ),
-                          ),
+                          // const CircleAvatar(
+                          //   radius: 17,
+                          //   child: CircleAvatar(
+                          //     backgroundColor: colorwhite,
+                          //     radius: 15,
+                          //     child: Center(
+                          //       child: Icon(
+                          //         FontAwesomeIcons.phone,
+                          //         size: 14,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],
